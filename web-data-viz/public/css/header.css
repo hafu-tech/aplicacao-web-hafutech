@@ -76,13 +76,13 @@ header .div-hamburger-pai .div-hamburger-filha {
   width: 0;
   height: 100vh;
   color: white;
-  background-color: #050835;
+  background-color: #09233d;
   transition: width 0.5s ease;
 }
 
 .div-menu-pai-ativo {
   width: 300px;
-  border-left: 2px solid white;
+  border-left: 4px solid rgba(0,0,0,0.3);
 }
 
 .div-menu-pai .div-menu-filha {
@@ -98,7 +98,7 @@ header .div-hamburger-pai .div-hamburger-filha {
 }
 
 .div-menu-pai-ativo .div-menu-filha-ativo {
-  border: 1px solid white;
+  border: 4px solid var(--amarelo);
   width: 80%;
 }
 
