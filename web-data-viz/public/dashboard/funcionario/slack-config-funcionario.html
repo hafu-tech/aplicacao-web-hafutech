@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/dashboards.css">
+    <link rel="stylesheet" href="../css/slack-config.css">
+    <link rel="stylesheet" href="../css/estilo.css">
+    <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <script src="../js/sessao.js"></script>
+</head>
+
+<body>
+
+    <div class="header-left">
+
+        <a href="../index-logado.html"><img src="../assets/logo.png" alt="LOGO"></a>
+
+        <div class="hello">
+            <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
+        </div>
+
+        <div class="btn-nav-white">
+            <a href="edicao.html">
+                <h3>Perfil</h3>
+            </a>
+        </div>
+
+
+        <div class="btn-nav-white">
+            <a href="dashboard.html">
+                <h3>Dashboard</h3>
+            </a>
+        </div>
+
+        <div class="btn-nav-white">
+            <a href="./mural.html">
+                <h3>Análises</h3>
+            </a>
+        </div>
+
+        <div class="btn-nav">
+            <a href="./slack-config.html">
+                <h3>Edição de Notificação</h3>
+            </a>
+        </div>
+
+        <div class="btn-logout" onclick="limparSessao()">
+            <h3>Sair</h3>
+        </div>
+
+    </div>
+
+    <div class="div-config-slack">
+        <div>
+            <h1>Editar notificações</h1>
+            <img src="../assets/kindpng_1461685.png" alt="">
+        </div>
+    </div>
+
+</body>
+
+</html>
+
+<script>
+    b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+</script>
