@@ -1,4 +1,5 @@
-var empresaModel = require("../models/empresaModel");
+var funcionarioModel = require("../models/funcionarioModel");
+
 function autenticar(req, res) {
     var email = req.body.emailServer;
     var senha = req.body.senhaServer;
@@ -9,7 +10,7 @@ function autenticar(req, res) {
         res.status(400).send("Sua senha está indefinida!");
     } else {
 
-        empresaModel.autenticar(email, senha)
+        funcionarioModel.autenticar(email, senha)
             .then(
                 function (resultadoAutenticar) {
                     console.log(`\nResultados encontrados: ${resultadoAutenticar.length}`);
@@ -20,7 +21,7 @@ function autenticar(req, res) {
                                     res.json({
                                         id: resultadoAutenticar[0].id,
                                         email: resultadoAutenticar[0].email,
-                                        nome_fantasia: resultadoAutenticar[0].nome_fantasia,
+                                        nome_funcionario: resultadoAutenticar[0].nome_funcionario,
                                         senha: resultadoAutenticar[0].senha
                                         
                                      });
@@ -42,8 +43,7 @@ function cadastrar(req, res) {
     
     var nome = req.body.nomeServer;
     var email = req.body.emailServer;
-    var cnpj = req.body.cnpjServer;
-    var senha = req.body.senhaServer;
+    var empresa = req.body.fkEmpresaServer;
     console.log("passei aqui 2")
 
     
@@ -51,11 +51,9 @@ function cadastrar(req, res) {
         res.status(400).send("Seu nome está undefined!");
     } else if (email == undefined) {
         res.status(400).send("Seu email está undefined!");
-    } else if (senha == undefined) {
-        res.status(400).send("Sua senha está undefined!");
     } else{
 
-        empresaModel.cadastrar(nome, email, senha, cnpj)
+        funcionarioModel.cadastrar(nome, email, empresa)
             .then(
                 function (resultado) {
                     res.json(resultado);
@@ -77,7 +75,7 @@ function editar(req, res) {
     var novaSenha = req.body.novaSenha;
     var id = req.body.id;
 
-    empresaModel.editar(novaSenha, id)
+    funcionarioModel.editar(novaSenha, id)
         .then(
             function (resultado) {
                 res.json(resultado);
@@ -86,7 +84,7 @@ function editar(req, res) {
         .catch(
             function (erro) {
                 console.log(erro);
-                console.log("Houve um erro ao editar a senha: ", erro.sqlMessage);
+                console.log("Houve um erro ao realizar o post: ", erro.sqlMessage);
                 res.status(500).json(erro.sqlMessage);
             }
         );
@@ -95,9 +93,9 @@ function editar(req, res) {
 
 function deletar(req, res) {
 
-    var id = req.params.id;
+    var email = req.params.email;
 
-    empresaModel.deletar(id)
+    funcionarioModel.deletar(email)
         .then(
             function (resultado) {
                 res.json(resultado);

@@ -7,7 +7,10 @@
     <title>Document</title>
     <link rel="stylesheet" href="../../css/dashboards.css">
     <link rel="stylesheet" href="../../css/estilo.css">
+    <link rel="stylesheet" href="../../css/criar-usuario.css">
     <script src="../../js/sessao.js"></script>
+    <script src="../../js/cadastro.js"></script>
+    <script src="../../js/deletar.js"></script>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link
         href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
@@ -18,54 +21,85 @@
 </head>
 
 <body>
-    <div class="header-left">
 
-        <a href="../../index-logado.html"><img src="../../assets/logo.png" alt="LOGO"></a>
+    <body>
+        <div class="header-left">
 
-        <div class="hello">
-            <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
+            <a href="../../index-logado.html"><img src="../../assets/logo.png" alt="LOGO"></a>
+
+            <div class="hello">
+                <h3>Olá, <span id="b_usuario"></span>!</h3>
+            </div>
+
+            <div class="btn-nav-white">
+                <a href="edicao-empresa.html">
+                    <h3>Perfil</h3>
+                </a>
+            </div>
+
+
+            <div class="btn-nav-white">
+                <a href="dashboard-empresa.html">
+                    <h3>Dashboard</h3>
+                </a>
+            </div>
+
+            <div class="btn-nav-white">
+                <a href="./mural-empresa.html">
+                    <h3>Análises</h3>
+                </a>
+            </div>
+
+            <div class="btn-nav-white">
+                <a href="./slack-config-empresa.html">
+                    <h3>Edição de Notificação</h3>
+                </a>
+            </div>
+
+            <div class="btn-nav">
+                <a href="./slack-config-empresa.html">
+                    <h3>Gerenciar usuários</h3>
+                </a>
+            </div>
+
+            <div class="btn-logout" onclick="limparSessao()">
+                <h3>Sair</h3>
+            </div>
+
         </div>
+        <div class="dash-right">
+            <div class="card-edicao">
+                <div class="config">
+                    <h2>Gerenciamento de acesso para funcionário</h2>
+                    <div class="div-infos">
+                        <h3>Dados do funcionário</h3>
+                        <div class="campo">
+                            <p>Nome do funcionário:</p>
+                            <input type="text" id="input_nome_funcionario" placeholder="Digite o nome do funcionário">
+                        </div>
+                        <div class="campo">
+                            <p>E-mail do funcionário:</p>
+                            <input type="text" id="input_email_funcionario" placeholder="Digite o e-mail do funcionário">
+                        </div>
+                        <div class="campo-tipo">
+                            <p>Tipo do funcionário:</p>
+                            <select id="select_tipo">
+                                <option>Comum</option>
+                            </select>
+                        </div>
+                        <div class="campos campos-btns">
+                            <button class="btn" onclick="cadastrarFuncionario()">Criar</button>
+                            <button class="btn" onclick="deletarFuncionario()">Deletar</button>
+                        </div>
+                        <p>*A senha padrão do funcionário é o e-mail dele.</p>
+                    </div>
+                </div>
+            </div>
 
-        <div class="btn-nav-white">
-            <a href="edicao-empresa.html">
-                <h3>Perfil</h3>
-            </a>
-        </div>
+    </body>
 
-
-        <div class="btn-nav-white">
-            <a href="dashboard-empresa.html">
-                <h3>Dashboard</h3>
-            </a>
-        </div>
-
-        <div class="btn-nav-white">
-            <a href="mural-empresa.html">
-                <h3>Análises</h3>
-            </a>
-        </div>
-
-        <div class="btn-nav-white">
-            <a href="slack-config-empresa.html">
-                <h3>Edição de Notificação</h3>
-            </a>
-        </div>
-
-        <div class="btn-nav">
-            <a href="criar-usuario.html">
-                <h3>Criar usuário</h3>
-            </a>
-        </div>
-
-        <div class="btn-logout" onclick="limparSessao()">
-            <h3>Sair</h3>
-        </div>
-
-    </div>
-</body>
-
-<script>
-    b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
-</script>
+    <script>
+        b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+    </script>
 
 </html>
