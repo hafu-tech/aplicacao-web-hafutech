@@ -69,7 +69,7 @@ function cadastrar() {
   exibirMensagem("Cadastro realizado com sucesso! Redirecionando para o login...", "sucesso");
 
   setTimeout(() => {
-    window.location = "login.html";
+    window.location = "login-empresa.html";
   }, 2000);
 
 }

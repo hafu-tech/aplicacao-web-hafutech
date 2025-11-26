@@ -18,11 +18,10 @@ function autenticar(req, res) {
                     if (resultadoAutenticar.length == 1) {
                         console.log(resultadoAutenticar);
                                     res.json({
-                                        id_usuario: resultadoAutenticar[0].id_usuario,
+                                        id: resultadoAutenticar[0].id,
                                         email: resultadoAutenticar[0].email,
-                                        nome_completo: resultadoAutenticar[0].nome_completo,
-                                        senha: resultadoAutenticar[0].senha,
-                                        tipo_usuario: resultadoAutenticar[0].tipo_usuario
+                                        nome_fantasia: resultadoAutenticar[0].nome_fantasia,
+                                        senha: resultadoAutenticar[0].senha
                                         
                                      });
                 } else if (resultadoAutenticar.length == 0) {
@@ -76,9 +75,9 @@ function cadastrar(req, res) {
 
 function editar(req, res) {
     var novaSenha = req.body.novaSenha;
-    var idEmpresa = req.params.idEmpresa;
+    var id = req.body.id;
 
-    empresaModel.editar(novaSenha, idEmpresa)
+    empresaModel.editar(novaSenha, id)
         .then(
             function (resultado) {
                 res.json(resultado);
@@ -95,9 +94,10 @@ function editar(req, res) {
 }
 
 function deletar(req, res) {
-    var idEmpresa = req.params.idEmpresa;
 
-    empresaModel.deletar(idEmpresa)
+    var id = req.params.id;
+
+    empresaModel.deletar(id)
         .then(
             function (resultado) {
                 res.json(resultado);
@@ -106,7 +106,7 @@ function deletar(req, res) {
         .catch(
             function (erro) {
                 console.log(erro);
-                console.log("Houve um erro ao deletar o post: ", erro.sqlMessage);
+                console.log("Houve um erro ao deletar o usuário: ", erro.sqlMessage);
                 res.status(500).json(erro.sqlMessage);
             }
         );

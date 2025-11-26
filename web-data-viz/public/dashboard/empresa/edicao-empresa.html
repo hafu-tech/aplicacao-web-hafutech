@@ -98,20 +98,20 @@
             alert("As senhas não coincidem")
         }
         else {
-            fetch(`/usuarios/editar/${sessionStorage.getItem("ID_USUARIO")}`, {
+            fetch(`/empresa/editar/${sessionStorage.getItem("ID_USUARIO")}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify({
-                    idUsuario: sessionStorage.ID_USUARIO,
+                    id: sessionStorage.ID_USUARIO,
                     novaSenha: input_nova_senha.value
                 })
             }).then(function (resposta) {
 
                 if (resposta.ok) {
                     window.alert("Senha atualizada com sucesso pelo usuario de email: " + sessionStorage.getItem("EMAIL_USUARIO") + "!");
-                    window.location = "/dashboard/edicao.html"
+                    window.location = "/dashboard/empresa/dashboard-empresa.html"
                 } else if (resposta.status == 404) {
                     window.alert("Deu 404!");
                 } else {
@@ -123,11 +123,12 @@
         }
     }
 
-    function excluirConta(idUsuario) {
+    function excluirConta() {
 
-        idUsuario = sessionStorage.ID_USUARIO
-        console.log("Criar função de apagar usuário escolhido - ID" + idUsuario);
-        fetch(`/usuarios/deletar/${idUsuario}`, {
+        var id = sessionStorage.ID_USUARIO
+
+        console.log("Criar função de apagar usuário escolhido - ID" + id);
+        fetch(`/empresa/deletar/${id}`, {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json"
@@ -136,7 +137,7 @@
 
             if (resposta.ok) {
                 window.alert("Usuário deletado com sucesso pelo usuario de email: " + sessionStorage.getItem("EMAIL_USUARIO") + "!");
-                window.location = "../index.html"
+                window.location = "../../index.html"
             } else if (resposta.status == 404) {
                 window.alert("Deu 404!");
             } else {

@@ -32,10 +32,9 @@ function entrar() {
                 resposta.json().then(json => {
                     console.log(json);
                     console.log(JSON.stringify(json));
-                    sessionStorage.TIPO_USUARIO = json.tipo_usuario;
                     sessionStorage.EMAIL_USUARIO = json.email;
-                    sessionStorage.NOME_USUARIO = json.nome_completo;
-                    sessionStorage.ID_USUARIO = json.id_usuario;
+                    sessionStorage.NOME_USUARIO = json.nome_fantasia;
+                    sessionStorage.ID_USUARIO = json.id;
                   exibirMensagem("Login efetuado com sucesso!");
 
                     setTimeout(function () {
