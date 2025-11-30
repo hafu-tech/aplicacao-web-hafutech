@@ -91,7 +91,7 @@ function entrarFuncionario() {
                 console.log(json);
                 console.log(JSON.stringify(json));
                 sessionStorage.EMAIL_USUARIO = json.email;
-                sessionStorage.NOME_USUARIO = json.nome_fantasia;
+                sessionStorage.NOME_USUARIO = json.nome_funcionario;
                 sessionStorage.ID_USUARIO = json.id;
                 exibirMensagem("Login efetuado com sucesso!");
 
