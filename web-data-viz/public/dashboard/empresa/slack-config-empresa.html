@@ -15,7 +15,7 @@
     <script src="../../js/sessao.js"></script>
 </head>
 
-<body>
+<body onload="checkar()">
 
     <div class="header-left">
 
@@ -62,11 +62,7 @@
 
     </div>
 
-<<<<<<< HEAD
-    <div class="right">
-=======
    <div class="right">
->>>>>>> 1a27b114c2467e99fe6a7376e4cda13037d49dae
         <div class="slack-config">
             <div>
                 <h1>Editar notificações</h1>
@@ -82,11 +78,7 @@
                 <input type="checkbox" id="ipt_desligado" class="meu-checkbox">
             </div>
             <div>
-<<<<<<< HEAD
-                <button>AAAAAAAAAAAAAAAAAAAAAAA</button>
-=======
                 <button class="btn-confirmar">Confirmar</button>
->>>>>>> 1a27b114c2467e99fe6a7376e4cda13037d49dae
             </div>
         </div>
     </div>
@@ -99,6 +91,7 @@
     b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
         var ligado = document.getElementById("ipt_ligado")
         var desligado = document.getElementById("ipt_desligado")
+
     function checkar(){
         ligado.addEventListener("change", () => {
             if (ligado.checked){

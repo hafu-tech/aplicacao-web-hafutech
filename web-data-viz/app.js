@@ -17,7 +17,7 @@ var indexRouter = require("./src/routes/index");
 var empresaRouter = require("./src/routes/empresa");
 var comentarioRouter = require("./src/routes/comentario");
 var funcionarioRouter = require("./src/routes/funcionario");
-var funcionarioRouter = require("./src/routes/slack");
+var slackRouter = require("./src/routes/slack");
 
 
 app.use(express.json());
@@ -29,8 +29,8 @@ app.use(cors());
 app.use("/", indexRouter);
 app.use("/empresa", empresaRouter);
 app.use("/comentario", comentarioRouter);
-funcionarioapp.use("/funcionario", funcionarioRouter);
-app.use("/ativar/${empresa_id}/${estado}", slackRouter);
+app.use("/funcionario", funcionarioRouter);
+app.use("/ativar", slackRouter);
 
 
 app.listen(PORTA_APP, function () {
