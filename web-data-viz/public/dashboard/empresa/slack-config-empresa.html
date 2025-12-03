@@ -62,10 +62,24 @@
 
     </div>
 
-    <div class="div-config-slack">
-        <div>
-            <h1>Editar notificações</h1>
-            <img src="../../assets/kindpng_1461685.png" alt="">
+    <div class="right">
+        <div class="slack-config">
+            <div>
+                <h1>Editar notificações</h1>
+                <img src="../../assets/kindpng_1461685.png" alt="">
+            </div>
+            <h2>Selecione uma opção:</h2>
+            <div>
+                <h3>Ligado:</h3>
+                <input type="checkbox" id="ipt_ligado" class="meu-checkbox">
+            </div>
+            <div>
+                <h3>Desligado:</h3>
+                <input type="checkbox" id="ipt_desligado" class="meu-checkbox">
+            </div>
+            <div>
+                <button>AAAAAAAAAAAAAAAAAAAAAAA</button>
+            </div>
         </div>
     </div>
 
@@ -75,4 +89,53 @@
 
 <script>
     b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+        var ligado = document.getElementById("ipt_ligado")
+        var desligado = document.getElementById("ipt_desligado")
+    function checkar(){
+        ligado.addEventListener("change", () => {
+            if (ligado.checked){
+                desligado.checked = false
+            }
+        })
+        desligado.addEventListener("change", () => {
+            if (desligado.checked){
+                ligado.checked = false
+            }
+        })
+    }
+
+
+
+
+    function editar() {
+        var estadoFinal = false;
+
+        if(ligado.checked){
+            estadoFinal = true
+        }
+
+
+        fetch(`/empresa/ativar/${sessionStorage.getItem("ID_USUARIO")}/${estadoFinal}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                descricao: textarea_descricao.value
+            })
+        }).then(function (resposta) {
+
+            if (resposta.ok) {
+                window.alert("Post atualizado com sucesso pelo usuario de email: " + sessionStorage.getItem("EMAIL_USUARIO") + "!");
+                window.location = "/slack-config-empresa.html"
+            } else if (resposta.status == 404) {
+                window.alert("Deu 404!");
+            } else {
+                throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+    }
+
 </script>
