@@ -1,4 +1,4 @@
- function exibirMensagem(mensagem) {
+function exibirMensagem(mensagem) {
   cardErro.innerText = mensagem;
 }
 
@@ -14,7 +14,7 @@ function cadastrar() {
     emailVar.length === 0 ||
     senhaVar.length === 0 ||
     confirmacaoVar.length === 0 ||
-    cnpjVar.length === 0 
+    cnpjVar.length === 0
   ) {
     exibirMensagem("Por favor, preencha todos os campos.", "erro");
     return false;
@@ -37,7 +37,7 @@ function cadastrar() {
     return false;
   }
 
-  if (cnpjVar.length != 14){
+  if (cnpjVar.length != 14) {
     exibirMensagem("Verifique o CNPJ e tente novamente")
     return false;
   }
@@ -69,7 +69,61 @@ function cadastrar() {
   exibirMensagem("Cadastro realizado com sucesso! Redirecionando para o login...", "sucesso");
 
   setTimeout(() => {
-    window.location = "login.html";
+    window.location = "login-empresa.html";
   }, 2000);
+
+}
+
+function cadastrarFuncionario() {
+  var nomeVar = input_nome_funcionario.value;
+  var emailVar = input_email_funcionario.value.trim();
+  var fkEmpresaVar = sessionStorage.ID_USUARIO;
+
+  if (
+    nomeVar.length === 0 ||
+    emailVar.length === 0
+  ) {
+    exibirMensagem("Por favor, preencha todos os campos.", "erro");
+    return false;
+  }
+
+  if (!emailVar.includes("@") || !emailVar.includes(".")) {
+    exibirMensagem("O e-mail precisa conter '@' e '.'", "erro");
+    return false;
+  }
+
+  var dominio = emailVar.toLowerCase();
+  if (
+    !dominio.endsWith(".com") &&
+    !dominio.endsWith(".com.br") &&
+    !dominio.endsWith(".edu") &&
+    !dominio.endsWith(".net") &&
+    !dominio.endsWith(".school")
+  ) {
+    exibirMensagem("O domínio do e-mail parece inválido.", "erro");
+    return false;
+  }
+
+  fetch("/funcionario/cadastrar", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+
+      nomeServer: nomeVar,
+      emailServer: emailVar,
+      fkEmpresaServer: fkEmpresaVar
+    }),
+  }).then((resposta) => {
+    if(resposta.ok){
+    window.alert("Usuário criado com sucesso!");
+  }
+})
+
+
+setTimeout(() => {
+  window.location = "criar-usuario.html";
+}, 2000);
 
 }

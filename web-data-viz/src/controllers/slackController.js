@@ -1,4 +1,5 @@
-var empresaModel = require("../models/empresaModel");
+var slackModel = require("../models/slackModel");
+
 function autenticar(req, res) {
     var email = req.body.emailServer;
     var senha = req.body.senhaServer;
@@ -38,46 +39,11 @@ function autenticar(req, res) {
 }
 
 
-function cadastrar(req, res) {
-    
-    var nome = req.body.nomeServer;
-    var email = req.body.emailServer;
-    var cnpj = req.body.cnpjServer;
-    var senha = req.body.senhaServer;
-    console.log("passei aqui 2")
+function ativar(req, res) {
+    var empresa_id = req.param.empresa_id;
+    var estado = req.param.estado;
 
-    
-    if (nome == undefined) {
-        res.status(400).send("Seu nome está undefined!");
-    } else if (email == undefined) {
-        res.status(400).send("Seu email está undefined!");
-    } else if (senha == undefined) {
-        res.status(400).send("Sua senha está undefined!");
-    } else{
-
-        empresaModel.cadastrar(nome, email, senha, cnpj)
-            .then(
-                function (resultado) {
-                    res.json(resultado);
-                }
-            ).catch(
-                function (erro) {
-                    console.log(erro);
-                    console.log(
-                        "\nHouve um erro ao realizar o cadastro! Erro: ",
-                        erro.sqlMessage
-                    );
-                    res.status(500).json(erro.sqlMessage);
-                }
-            );
-    }
-}
-
-function editar(req, res) {
-    var novaSenha = req.body.novaSenha;
-    var id = req.body.id;
-
-    empresaModel.editar(novaSenha, id)
+    slackModel.ativar(empresa_id, estado)
         .then(
             function (resultado) {
                 res.json(resultado);
@@ -86,27 +52,7 @@ function editar(req, res) {
         .catch(
             function (erro) {
                 console.log(erro);
-                console.log("Houve um erro ao editar a senha: ", erro.sqlMessage);
-                res.status(500).json(erro.sqlMessage);
-            }
-        );
-
-}
-
-function deletar(req, res) {
-
-    var id = req.params.id;
-
-    empresaModel.deletar(id)
-        .then(
-            function (resultado) {
-                res.json(resultado);
-            }
-        )
-        .catch(
-            function (erro) {
-                console.log(erro);
-                console.log("Houve um erro ao deletar o usuário: ", erro.sqlMessage);
+                console.log("Houve um erro ao ativar ou desativar a notificação : ", erro.sqlMessage);
                 res.status(500).json(erro.sqlMessage);
             }
         );
@@ -114,7 +60,5 @@ function deletar(req, res) {
 
 module.exports = {
     autenticar,
-    cadastrar,
-    editar,
-    deletar
+    ativar
 }

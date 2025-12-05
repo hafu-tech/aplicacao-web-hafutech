@@ -5,48 +5,51 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hafutech | Edição</title>
-    <link rel="stylesheet" href="./../css/dashboards.css">
-    <link rel="stylesheet" href="./../css/estilo.css" />
-    <script src="../js/sessao.js"></script>
+    <link rel="stylesheet" href="../../css/dashboards.css">
+    <link rel="stylesheet" href="../../css/estilo.css">
+    <script src="../../js/sessao.js"></script>
+    <script src="../../js/modal.js"></script>
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
 
     <!-- Biblioteca do Font Awesome -->
     <script src="https://kit.fontawesome.com/9f7414eb10.js" crossorigin="anonymous"></script>
 
 </head>
 
-<body>
+<body onload="exibirModalSenha()">
     <div class="header-left">
 
-        <a href="../index-logado.html"><img  src="../assets/logo.png" alt="LOGO"></a>
+        <a href="../../index-logado.html"><img src="../../assets/logo.png" alt="LOGO"></a>
 
         <div class="hello">
             <h3>Olá, <span id="b_usuario"></span>!</h3>
         </div>
 
         <div class="btn-nav">
-            <a href="edicao.html">
+            <a href="edicao-funcionario.html">
                 <h3>Perfil</h3>
             </a>
         </div>
 
 
         <div class="btn-nav-white">
-            <a href="dashboard.html">
+            <a href="dashboard-funcionario.html">
                 <h3>Dashboard</h3>
             </a>
         </div>
 
         <div class="btn-nav-white">
-            <a href="./mural.html">
+            <a href="./mural-funcionario.html">
                 <h3>Análises</h3>
             </a>
         </div>
-        
+
         <div class="btn-nav-white">
-            <a href="./slack-config.html">
+            <a href="./slack-config-funcionario.html">
                 <h3>Edição de Notificação</h3>
             </a>
         </div>
@@ -62,10 +65,10 @@
                 <h2>Configurações de usuário</h2>
                 <div class="div-senha">
                     <h3>Alterar a senha</h3>
-                    <a>Nova senha:</a>
-                    <input type="text" id="input_nova_senha" placeholder="Digite sua nova senha">
+                    <p>Nova senha:</p>
+                    <input type="password" id="input_nova_senha" placeholder="Digite sua nova senha">
                     <p>Confirme a nova senha:</p>
-                    <input type="text" id="input_confirmar_senha" placeholder="Confirme sua nova senha">
+                    <input type="password" id="input_confirmar_senha" placeholder="Confirme sua nova senha">
                     <button onclick="editarSenha()">Alterar senha</button>
                 </div>
                 <div class="div-excluir">
@@ -90,21 +93,21 @@
         if (ipt_confirmar != ipt_confirmar) {
             alert("As senhas não coincidem")
         }
-        else{
-            fetch(`/usuarios/editar/${sessionStorage.getItem("ID_USUARIO")}`, {
+        else {
+            fetch(`/funcionario/editar/${sessionStorage.getItem("ID_USUARIO")}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify({
-                    idUsuario: sessionStorage.ID_USUARIO,
-                    novaSenha: input_nova_senha.value
+                    id: sessionStorage.ID_USUARIO,
+                    novaSenha: ipt_senha
                 })
             }).then(function (resposta) {
-            
+
                 if (resposta.ok) {
                     window.alert("Senha atualizada com sucesso pelo usuario de email: " + sessionStorage.getItem("EMAIL_USUARIO") + "!");
-                    window.location = "/dashboard/edicao.html"
+                    window.location = "../funcionario/edicao-funcionario.html"
                 } else if (resposta.status == 404) {
                     window.alert("Deu 404!");
                 } else {
@@ -116,11 +119,11 @@
         }
     }
 
-    function excluirConta(idUsuario) {
+    function excluirConta() {
 
-        idUsuario = sessionStorage.ID_USUARIO
-        console.log("Criar função de apagar usuário escolhido - ID" + idUsuario);
-        fetch(`/usuarios/deletar/${idUsuario}`, {
+        var email = input_email.value
+        console.log("Criar função de apagar usuário escolhido");
+        fetch(`/funcionario/deletar/${email}`, {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json"
@@ -129,7 +132,7 @@
 
             if (resposta.ok) {
                 window.alert("Usuário deletado com sucesso pelo usuario de email: " + sessionStorage.getItem("EMAIL_USUARIO") + "!");
-                window.location = "../index.html"
+                window.location = "../../index.html"
             } else if (resposta.status == 404) {
                 window.alert("Deu 404!");
             } else {

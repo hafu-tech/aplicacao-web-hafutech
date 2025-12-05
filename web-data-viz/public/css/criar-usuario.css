@@ -1,0 +1,41 @@
+.card-edicao .config{
+    display: flex;
+    justify-content: space-evenly;
+
+}
+
+.card-edicao .config .div-infos {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+}
+
+.btn {
+    width: 240px;
+    height: 200px;
+}
+
+.campo {
+  width: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.campo-tipo {
+  width: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.campos-btns {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+select {
+    width: 200px;
+}

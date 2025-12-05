@@ -10,9 +10,11 @@
   <link rel="stylesheet" href="./css/footer.css">
   <link rel="icon" href="./assets/icon/favicon2.ico">
   <link
-    href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-    rel="stylesheet">
-  <script src="./js/sessao.js"></script>
+  href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+  rel="stylesheet">
+  <script src="js/login.js"></script>
+  <script src="../public/js/sessao.js"></script>
+  <!-- <script src="js/login.js"></script> -->
 </head>
 
 <body>
@@ -22,7 +24,7 @@
     <div id="canto-direito">
       <div id="login-cadastro">
         <a href="cadastro.html">Cadastro</a>
-        <a href="login.html">Login</a>
+        <a href="login-empresa.html">Login</a>
       </div>
       <div class="div-hamburger-pai" onclick="mostrarMenu()">
         <div class="div-hamburger-filha"></div>
@@ -56,7 +58,7 @@
 
     <div class="card card-login">
       <div class="titulo">
-        <h2>Login</h2>
+        <h2>Login (Funcionário)</h2>
       </div>
       <div class="campo">
         <span>E-mail:</span>
@@ -66,9 +68,9 @@
         <span>Senha:</span>
         <input id="senha_input" type="password" placeholder="******">
       </div>
-      <button class="botao" onclick="entrar()">Entrar</button>
+      <button class="botao" onclick="entrarFuncionario()">Entrar</button>
       <div class="esqueceu">
-        <p>Não possui conta? <a href="cadastro.html"><i> Registre-se!</i></a></p>
+        <p>É uma empresa? <a href="login-empresa.html"><i>Clique aqui!</i></a></p>
       </div>
       <div id="cardErro"></div>
     </div>
@@ -84,4 +86,3 @@
 </body>
 
 </html>
-<script src="js/login.js"></script>

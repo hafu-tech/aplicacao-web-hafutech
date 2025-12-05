@@ -1,27 +1,83 @@
-.div-config-slack {
-    display: flex;
-    height: 100vh;
-    width: 85vw;
-    align-items: center;
-    justify-content: center;
-    background-color: rgb(247, 244, 244);
-    margin-left: 15vw;
+.right {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 85vw;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(247, 244, 244);
+  margin-left: 15vw;
 }
 
-.div-config-slack div {
-    display: flex;
-    gap: 20px;
-    width: 900px;
-    height: 550px;
-    background-color: #050835;
-    box-shadow: 4px 1px 5px 0 #050835;
-    padding: 50px 0 0 200px;
-    color: white;
+.right div {
+  display: flex;
+  gap: 20px;
 }
 
-.div-config-slack div img {
-    width: 200px;
-    height: 50px;
-
+.right .slack-config {
+  display: flex;
+  flex-direction: column;
+  gap: 70px;
+  width: 70%;
+  height: 70%;
+  background-color: #050835;
+  box-shadow: 4px 1px 5px 0 #050835;
+  padding: 50px 0 0 0;
+  color: white;
 }
 
+.right div img {
+  width: 200px;
+  height: 50px;
+}
+
+.meu-checkbox {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  border: 2px solid #555;
+  border-radius: 4px;
+  vertical-align: middle;
+  cursor: pointer;
+  margin-right: 6px;
+  position: relative;
+  background-color: white;
+}
+
+.meu-checkbox:checked {
+  background-color: #4caf50;
+  border-color: #4caf50;
+}
+
+.meu-checkbox:checked::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 5px;
+  width: 5px;
+  height: 9px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn-confirmar {
+  width: 250px;
+  color: white;
+  background-color: var(--amarelo);
+  border-radius: 8px;
+  border: #212124 solid 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  cursor: pointer;
+  font-weight: bolder;
+}

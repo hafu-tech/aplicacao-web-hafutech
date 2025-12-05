@@ -1,6 +1,6 @@
 function limparSessao() {
     sessionStorage.clear();
-    window.location = "../index.html";
+    window.location = "../../index.html";
 }
 
 // carregamento (loading)

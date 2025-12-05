@@ -75,25 +75,6 @@ img {
   margin-top: 15px;
 }
 
-.dash-right .avisos .div-form button {
-  cursor: pointer;
-  font-family:"Poppins", sans-serif;
-  border: 0;
-  border-radius: 5px;
-  font-weight: 600;
-  font-size: 14px;
-  padding: 10px 15px;
-  color: white;
-  background-color: #050835;
-  width: 120px;
-  transition: 0.4s;
-}
-
-.dash-right .avisos .div-form button:hover {
-  background-color: #22287e;
-  color: #f0f0f0;
-}
-
 .publicacao-btn-editar {
   cursor: pointer;
   font-family:"Poppins", sans-serif;
@@ -436,7 +417,6 @@ img {
   justify-content: space-between;
   position: absolute;
   height: 90%;
-  /* margin-left: 30%; */
   text-align: center;
 }
 
@@ -477,3 +457,37 @@ img {
   background-color: #d19a00;
   color: #f0f0f0;
 }
+
+.mudar_senha {
+  width: 70%;
+  background-color: #E9AD32;
+}
+
+.mudar_senha {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  position: absolute;
+  z-index: 646546;
+  width: 500px;
+  height: 250px;
+  left: 800px;
+  top: 250px;
+  border-radius: 4px;
+  background-color: rgba(5, 8, 53, 0.95);
+  color: var(--amarelo);
+}
+
+.btn-ok{
+  width: 80px;
+  cursor: pointer;
+  font-family:"Poppins", sans-serif;
+  border: 0;
+  border-radius: 5px;
+  font-weight: 600;
+  font-size: 14px;
+  padding: 5px 8px;
+  color: white;
+  background-color: var(--amarelo);}
+
