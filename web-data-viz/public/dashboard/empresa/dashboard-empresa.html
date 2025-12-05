@@ -11,7 +11,6 @@
 
 
     <link rel="stylesheet" href="../../css/dashboards.css">
-    <link rel="stylesheet" href="../../css/estilo.css">
     <script src="../../js/sessao.js"></script>
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -19,8 +18,6 @@
         href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
 
-    <!-- Biblioteca do Font Awesome -->
-    <script src="https://kit.fontawesome.com/9f7414eb10.js" crossorigin="anonymous"></script>
 
     <!-- Biblioteca do ChartApex -->
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
@@ -74,41 +71,52 @@
 
     </div>
 
-    <div class="dash">
+   <main class="dash">
+    <section class="parte-cima-dash" >
+      <div class="nome-pagina-dash">Taxa de Evasão Escolar - INSE e Regiões Brasileiras</div>
+    </section>
 
-        <div class="parte-cima">
-            <div class="nome-pagina"><span>Regiões e Evasão Escolar</span></div>
-            <div class="regiao">
-                <label for="selectRegiao">Região:</label>
-                <select id="selectRegiao">
-                    <option value="">Todas</option>
-                    <option value="norte">Norte</option>
-                    <option value="nordeste">Nordeste</option>
-                    <option value="centro-oeste">Centro-Oeste</option>
-                    <option value="sudeste">Sudeste</option>
-                    <option value="sul">Sul</option>
-                </select>
+     <div class="main-dash">
+
+      <div class="container-kpi">
+        <section class="kpis">
+            <div class="kpis-destaque">
+        <article class="kpi-destaque orange">
+            <h3>Ano Escolar Mais Afetado</h3>
+            <p class="valor-kpi" id="kpi_ano_afetado">3º Ano EM</p>
+            <span class="descricao-kpi" id="kpi_ano_afetado_desc">Taxa de evasão: 8,5%</span>
+          </article>
+           <article class="kpi-destaque">
+            <h3>Ano Escolar Menos Afetado</h3>
+            <p class="valor-kpi" id="kpi_ano_afetado">1º Ano Fundamental</p>
+            <span class="descricao-kpi" id="kpi_ano_afetado_desc">Taxa de evasão: 2,5%</span>
+          </article>
+           <article class="kpi-destaque">
+            <h3>Ano Escolar Menos Afetado</h3>
+            <p class="valor-kpi" id="kpi_ano_afetado">1º Ano Fundamental</p>
+            <span class="descricao-kpi" id="kpi_ano_afetado_desc">Taxa de evasão: 2,5%</span>
+          </article>
             </div>
 
-        </div>
+        <div class="lista-escola">
+            iudhygudasiojo
+          </div>
+          
+        </section>
 
-        <div class="kpis">
-            <div class=" kpi kpi1">
-                <h3>Região mais afetada</h3>
-                <p class="valor-kpi">Nordeste</p>
-                <span class="descricao-kpi">Taxa de evasão média: 7,8%</span>
-            </div>
-
-            <div class=" kpi kpi2">
-                <h3>Ano escolar mais afetado</h3>
-                <p class="valor-kpi">3º Ano do Ensino Médio</p>
-                <span class="descricao-kpi">Taxa de evasão: 8,5%</span>
-            </div>
-        </div>
-
-        <div class="graficos">
-            <div id="chart" class="graficoApex"></div>
-        </div>
+          <section class="graficos">
+         <div class="grafico-card">
+           <h3>Região Mais Afetada</h3>
+           <div id="chart3"></div>
+         </div>
+          <div class="grafico-card2">
+           <h3>Alunos por Grupo INSE</h3>
+           <div id="chart2"></div>
+         </div>
+            <div class="explicacao-pizza">
+          jhdufyiguhys8a7ig
+       </div>
+       </section>
 
     </div>
 
@@ -116,80 +124,98 @@
 
         b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
-        var options = {
-            series: [
-                {
-                    name: 'Escola Pública',
-                    type: 'column',
-                    data: [12, 15, 18, 22, 28, 33, 38, 42, 48, 52, 55, 60, 62, 65, 68]
-                }
-            ],
-            chart: {
-                height: 350,
-                type: 'line',
-                stacked: false
-            },
-            plotOptions: {
-                bar: {
-                    colors: {
-                        ranges: [{
-                            from: 0,
-                            to: 100,
-                            color: '#050835'
-                        }]
-                    },
-                    columnWidth: '50%'
-                }
-            },
-            dataLabels: {
-                enabled: false
-            },
-            stroke: {
-                width: [3]
-            },
-            title: {
-                text: 'Evasão Anual das Escolas Públicas',
-                align: 'left',
-                offsetX: 110
-            },
-            xaxis: {
-                categories: [
-                    2009, 2010, 2011, 2012, 2013, 2014, 2015,
-                    2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023
-                ]
-            },
-            yaxis: {
-                min: 0,
-                max: 100,
-                axisTicks: { show: true },
-                axisBorder: { show: true, color: '#000000' },
-                labels: {
-                    style: { colors: '#000000' },
-                    formatter: function (val) {
-                        return val + "%";
-                    }
-                },
-                title: {
-                    text: "Taxa de Evasão (%) - Escola Pública",
-                    style: { color: '#000000' }
-                },
-                tooltip: { enabled: true }
-            },
-            tooltip: {
-                fixed: {
-                    enabled: true,
-                    position: 'topLeft',
-                    offsetY: 30,
-                    offsetX: 60
-                }
-            },
-            legend: {
-                show: true
-            }
+        document.addEventListener('DOMContentLoaded', function () {
+      var pieOptions = {
+        series: [287, 1342, 892, 434],
+        chart: { 
+          type: 'pie', 
+          height: 360 
+        },
+
+        labels: ['Grupo 3', 'Grupo 4', 'Grupo 5', 'Grupo 6'],
+        colors: ['#E5A72A', '#F2C94C', '#F2994A', '#EB5757'],
+
+        legend: { position: 'bottom',
+          fontSize: '20px',
+          labels: {
+            colors: [],
+          },
+          stroke: {
+            show: false
+          },
+        },
+        
+        dataLabels: {
+        enabled: false,
+        enabledOnSeries: undefined},
+
+        plotOptions: {
+          pie: {
+              size: '50%'
+            
+          }
+        },
+
+        style: {
+        fontSize: '100px',
+        fontFamily: 'Poppins, sans-serif',
+        fontWeight: 'bold',
+        }
+      };
+      var pieChart = new ApexCharts(document.querySelector('#chart2'), pieOptions);
+      pieChart.render();
+    });
+
+       var options = {
+          series: [
+          {
+            name: "Região Mais Afetada",
+            data: [1380, 1100, 990, 880, 740],
+          },
+        ],
+          chart: {
+          type: 'bar',
+          height: 350,
+          dropShadow: {
+            enabled: true,
+          },
+        },
+        plotOptions: {
+          bar: {
+            borderRadius: 0,
+            horizontal: true,
+            barHeight: '80%',
+            isFunnel: true,
+          },
+        },
+        dataLabels: {
+          enabled: true,
+          formatter: function (val, opt) {
+            return opt.w.globals.labels[opt.dataPointIndex] + ':  ' + val
+          },
+          dropShadow: {
+            enabled: true,
+          },
+        },
+        title: {
+          text: '',
+          align: 'middle',
+        },
+        xaxis: {
+          categories: [
+            'Nordeste',
+            'Norte',
+            'Sudeste',
+            'Centro-Oeste',
+            'Sul',
+          ],
+        },
+        legend: {
+          show: false,
+        },
         };
 
-        // Renderizar gráfico
-        var chart = new ApexCharts(document.querySelector("#chart"), options);
+        var chart = new ApexCharts(document.querySelector("#chart3"), options);
         chart.render();
     </script>
 
