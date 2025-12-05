@@ -124,6 +124,70 @@ span {
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); 
 }
 
+.sobre-nos {
+  background-color: rgb(255, 255, 255);
+  padding: 60px 20px;
+  text-align: center;
+  height: auto;
+  box-shadow: #000000;
+}
+
+.sobre-nos h2 {
+  font-size: 40px;
+  color: #000000;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+.sobre-nos-text {
+  max-width: 800px;
+  margin: 0 auto;
+  font-size: 22px;
+  font-weight: 600;
+  color: #333333;
+  padding: 35px;
+  background-color: #b9b9b9;
+  border-radius: 10px;
+}
+
+.status-curiosidade {
+  background-color: #2c3e50;
+  padding: 60px 20px;
+  color: white;
+  height: auto;
+}
+
+.status-curiosidade-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.curiosidade-status-box {
+  text-align: center;
+  width: 280px;
+  padding: 30px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+
+.status-curiosidade-n {
+  font-size: 48px;
+  color: var(--amarelo);
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.label-curiosidade-status {
+  font-size: 18px;
+  color: white;
+  line-height: 1.5;
+}
+
+
 @media screen and (max-width: 800px) {
 
   * {
