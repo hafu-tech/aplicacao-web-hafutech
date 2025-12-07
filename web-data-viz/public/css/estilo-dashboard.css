@@ -9,34 +9,12 @@
   --amarelo: #E9AD32;
 }
 
-main {
-  height: auto;
-  display: flex;
-  flex-direction: column;
-  color: white;
-}
-
-section {
-  height: 100vh;
-}
-
-section:first-of-type {
-  margin-top: -10vh;
-  background-image: url("../assets/fundo-biblioteca.png");
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
 #home {
   height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-}
-
-span {
-  color: var(--amarelo);
 }
 
 #frases {

@@ -19,9 +19,12 @@ img {
   height: 150px;
 }
 
-.label-captura {
+.dash-right {
   display: flex;
-  justify-content: center;
+  width: 85vw;
+  height: 100vh;
+  background-color: rgb(247, 244, 244);
+  margin-left: 15vw;
 }
 
 .dash-right .avisos {
@@ -144,24 +147,6 @@ img {
   margin-left: 30px;
 }
 
-/* pagina graficos */
-
-.dash-header {
-  background-color: #f0f0f0;
-}
-
-.dash {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
-  width: 100%;
-  height: 100vh;
-  margin-left: 15vw;
-  background-color: rgb(247, 244, 244);
-}
-
 .header-left div {
   font-size: 13px;
 }
@@ -185,15 +170,6 @@ img {
   border-right: 3px solid #0f0f0f;
   background-color: #050835;
 }
-
-.dash-right {
-  display: flex;
-  width: 85vw;
-  height: 100vh;
-  background-color: rgb(247, 244, 244);
-  margin-left: 15vw;
-}
-
 
 .hello {
   width: 100%;
@@ -277,109 +253,6 @@ img {
   color: #f3f3f3;
 }
 
-.graficos {
-  background-color: #ffffff;
-  width: 85%;
-  height: 65%;
-  border-radius: 8px;
-}
-
-.parte-cima {
-  width: 85%;
-  height: 10%;
-  display: flex;
-  align-items: center;
-}
-
-.kpis {
-  width: 85%;
-  height: 15%;
-  display: flex;
-  gap: 30px;
-  justify-content: center;
-  align-items: center;
-  margin-top: -5px;
-}
-
-.kpi {
-  width: 55%;
-  height: 100%;
-  border-radius: 10px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 15px;
-  box-shadow: 4px 0px 5px 0px rgba(0, 0, 0, 0.758);
-  font-family:"Poppins", sans-serif'Barlow', sans-serif;
-}
-
-.kpi1,
-.kpi1 h3,
-.kpi1 p,
-.kpi1 span {
-  background-color: #050835;
-  color: white;
-}
-
-.kpi2,
-.kpi2 h3,
-.kpi2 p,
-.kpi2 span {
-  background-color: var(--amarelo);
-  color: #050835;
-}
-
-.nome-pagina {
-  width: 70%;
-  height: 80%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 8px;
-  background-color: white;
-  font-weight: bolder;
-  font-size: 20px;
-}
-
-.nome-pagina span {
-  color: black;
-}
-
-.graficoApex {
-  background-color: #ffffff;
-  margin-top: 30px;
-}
-
-.regiao {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  width: 30%;
-  height: 80%;
-  background-color: #ffffff;
-  border-radius: 8px;
-  font-family:"Poppins", sans-serif'Barlow', sans-serif;
-  margin-left: 5px;
-}
-
-.regiao label {
-  color: #000;
-  font-size: 12px;
-}
-
-.regiao select {
-  padding: 5px 10px;
-  border: 2px solid #d19a00;
-  border-radius: 6px;
-  font-size: 1rem;
-  cursor: pointer;
-  background-color: #fff;
-  transition: 0.3s;
-}
-
 .container {
   padding-top: 70px;
   padding-left: 70px;
@@ -426,7 +299,7 @@ img {
   justify-content: space-between;
   height: 50%;
   width: 100%;
-  }
+}
 
 .card-edicao .div-excluir {
   display: flex;
@@ -491,3 +364,167 @@ img {
   color: white;
   background-color: var(--amarelo);}
 
+  /* DASHBOARD JULIA */
+
+.dash{
+  margin-left:220px;
+  width:calc(100% - 220px);
+  min-height:100vh;
+  padding:10px;
+  display:flex; 
+  flex-direction:column; 
+  gap:8px;
+  background:#F3F1E4;
+}
+
+.main-dash{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.parte-cima-dash{
+  background:#FFFFFF;
+   border-radius:10px; 
+   height: 10vh;
+   padding:10px;
+  display:flex; 
+  align-items:center; 
+  justify-content:space-between;
+  text-align: center;
+}
+
+.nome-pagina-dash{ 
+  display: flex;
+    font-size:30px; 
+    font-weight:800; 
+    color:#0F172A; 
+    text-align: center;
+    margin-left: 23%;
+}
+
+/* KPIs */
+.container-kpi{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  padding: 1%;
+  margin-top: -2%;
+}
+
+.kpis{
+  display:flex; 
+  margin-bottom:8px;
+  flex-direction: column;
+  width: 75vh;
+  gap: 20%;
+  margin-top: 37px;
+  margin-left: 10%;
+}
+
+.kpi{
+  background:#FFFFFF; 
+  border-radius:8px; 
+  text-align: center; 
+  margin-top: 30px;
+  height: 10vh;
+  width: 75%;
+  align-self: center;
+  font-size: 25px;
+}
+
+.kpi h3{ 
+  font-size:13px; 
+  color:#666; 
+  margin-bottom:6px; }
+
+.kpi .valor-kpi{ 
+  font-size:20px;
+  font-weight:800; 
+  color:#131d35; 
+}
+
+.kpi .descricao-kpi{ 
+  font-size:12px; 
+  color:#666; 
+}
+
+/* Destaques */
+.kpis-destaque{
+  display:flex; 
+  margin-bottom:8px;
+  flex-direction: row;
+  width: 75vh;
+  font-size: 25px;
+}
+
+.kpi-destaque{
+  border-radius:8px; 
+  text-align: center; 
+  align-self: center;
+  width: 300px;
+  height: 380px;
+  border-radius: 30px;
+  background: #e0e0e0;
+  box-shadow: 15px 15px 30px #bebebe,
+             -15px -15px 30px #ffffff;
+}
+
+.kpi-destaque.orange{ 
+  background:#E5A72A;
+   color:#111; }
+
+.kpi-destaque h3{ 
+  font-size:14px;
+ }
+
+.kpi-destaque .valor-kpi{
+   font-size:22p; 
+   font-weight:900;
+   line-height:1.1; 
+   margin:6px 0; 
+  }
+
+.kpi-destaque .descricao-kpi{ 
+  font-size:13px; 
+}
+
+/* Gráficos */
+.graficos{
+  gap:8px;
+  display: flex;
+  flex-direction: column;
+    width: 50%;
+  height: 50vh;
+}
+
+.grafico-card{
+  background:#FFFFFF; 
+  border-radius:8px; 
+  padding:12px;
+ 
+}
+
+.grafico-card2{
+  background:#FFFFFF; 
+  border-radius:8px; 
+  padding:12px;
+  width: 55%; 
+}
+
+.grafico-card h3{ 
+    font-size:14px; 
+    color:#0F172A; 
+    margin-bottom:8px; 
+}
+
+.lista-escola{
+  background:#FFFFFF; 
+  border-radius:8px; 
+  text-align: center; 
+  margin-top: 30px;
+  height: 10vh;
+  width: 75%;
+  align-self: center;
+  font-size: 25px;
+}
