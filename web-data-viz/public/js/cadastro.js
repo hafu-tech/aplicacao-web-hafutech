@@ -3,6 +3,7 @@ function exibirMensagem(mensagem) {
 }
 
 function cadastrar() {
+
   var nomeVar = nome_input.value;
   var emailVar = email_input.value.trim();
   var cnpjVar = cnpj_input.value.trim();
@@ -26,6 +27,7 @@ function cadastrar() {
   }
 
   var dominio = emailVar.toLowerCase();
+
   if (
     !dominio.endsWith(".com") &&
     !dominio.endsWith(".com.br") &&
@@ -63,21 +65,28 @@ function cadastrar() {
       senhaServer: senhaVar
     }),
   })
+  .then(res => res.json())
+  .then(data => {
+    var empresa_id = data.empresa_id
+    return fetch(`/slack/ligar/${empresa_id}`, {
+      method: "PUT"
+    })
+  })
+  .then(() => {
+    var spanCadastro = document.querySelector(".span-cadastro")
+    spanCadastro.classList.toggle("display-none")
+    exibirMensagem("Cadastro realizado com sucesso! Redirecionando para o login...", "sucesso");
+  
+    setTimeout(() => {
+      window.location = "login-empresa.html";
+    }, 2000);
 
-  var spanCadastro = document.querySelector(".span-cadastro")
-  spanCadastro.classList.toggle("display-none")
-  exibirMensagem("Cadastro realizado com sucesso! Redirecionando para o login...", "sucesso");
-
-  setTimeout(() => {
-    window.location = "login-empresa.html";
-  }, 2000);
-
+  })
 }
 
 function cadastrarFuncionario() {
   var nomeVar = input_nome_funcionario.value;
   var emailVar = input_email_funcionario.value.trim();
-  var fkEmpresaVar = sessionStorage.ID_USUARIO;
 
   if (
     nomeVar.length === 0 ||
@@ -116,14 +125,13 @@ function cadastrarFuncionario() {
       fkEmpresaServer: fkEmpresaVar
     }),
   }).then((resposta) => {
-    if(resposta.ok){
-    window.alert("Usuário criado com sucesso!");
-  }
-})
+    if (resposta.ok) {
+      window.alert("Usuário criado com sucesso!");
+    }
+  })
 
-
-setTimeout(() => {
-  window.location = "criar-usuario.html";
-}, 2000);
+  setTimeout(() => {
+    window.location = "criar-usuario.html";
+  }, 2000);
 
 }

@@ -1,15 +1,13 @@
 var database = require("../database/config")
 
-function autenticar(email, senha) {
+function ligar(empresa_id) {
     var instrucao = `
-        SELECT id, nome_fantasia, email, senha FROM Empresa WHERE email = '${email}' AND senha = '${senha}';
+        INSERT INTO Status_slack_atividade (estado, empresa_id) VALUES
+        ('ATIVO', ${empresa_id});
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
 }
-
-
-
 
 function ativar(id_empresa, estado){
     var instrucao =`
@@ -20,6 +18,6 @@ function ativar(id_empresa, estado){
 }
 
 module.exports = {
-    autenticar,
+    ligar,
     ativar
 };

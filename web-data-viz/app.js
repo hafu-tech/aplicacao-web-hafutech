@@ -30,7 +30,7 @@ app.use("/", indexRouter);
 app.use("/empresa", empresaRouter);
 app.use("/comentario", comentarioRouter);
 app.use("/funcionario", funcionarioRouter);
-app.use("/ativar", slackRouter);
+app.use("/slack", slackRouter);
 
 
 app.listen(PORTA_APP, function () {

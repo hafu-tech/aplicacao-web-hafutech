@@ -1,4 +1,5 @@
 var empresaModel = require("../models/empresaModel");
+
 function autenticar(req, res) {
     var email = req.body.emailServer;
     var senha = req.body.senhaServer;
@@ -58,7 +59,9 @@ function cadastrar(req, res) {
         empresaModel.cadastrar(nome, email, senha, cnpj)
             .then(
                 function (resultado) {
-                    res.json(resultado);
+                    res.status(201).json({
+                        empresa_id: resultado.insertId
+                    })
                 }
             ).catch(
                 function (erro) {
