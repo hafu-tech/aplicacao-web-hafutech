@@ -17,8 +17,8 @@ function ligar(req, res) {
 }
 
 function ativar(req, res) {
-    var empresa_id = req.param.empresa_id;
-    var estado = req.param.estado;
+    var empresa_id = req.params.empresa_id;
+    var estado = req.body.estado;
 
     slackModel.ativar(empresa_id, estado)
         .then(

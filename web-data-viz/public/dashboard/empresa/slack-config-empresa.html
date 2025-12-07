@@ -49,7 +49,7 @@
                 <h3>Edição de Notificação</h3>
             </a>
         </div>
-        
+
         <div class="btn-nav-white">
             <a href="criar-usuario.html">
                 <h3>Gerenciar usuários</h3>
@@ -62,7 +62,7 @@
 
     </div>
 
-   <div class="right">
+    <div class="right">
         <div class="slack-config">
             <div>
                 <h1>Editar notificações</h1>
@@ -78,7 +78,7 @@
                 <input type="checkbox" id="ipt_desligado" class="meu-checkbox">
             </div>
             <div>
-                <button class="btn-confirmar">Confirmar</button>
+                <button onclick="ativar()" class="btn-confirmar">Confirmar</button>
             </div>
         </div>
     </div>
@@ -89,43 +89,44 @@
 
 <script>
     b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
-        var ligado = document.getElementById("ipt_ligado")
-        var desligado = document.getElementById("ipt_desligado")
+    var ligado = document.getElementById("ipt_ligado")
+    var desligado = document.getElementById("ipt_desligado")
 
-    function checkar(){
+    function checkar() {
         ligado.addEventListener("change", () => {
-            if (ligado.checked){
+            if (ligado.checked) {
                 desligado.checked = false
             }
         })
         desligado.addEventListener("change", () => {
-            if (desligado.checked){
+            if (desligado.checked) {
                 ligado.checked = false
             }
         })
     }
 
-    function editar() {
-        var estadoFinal = false;
+    function ativar() {
 
-        if(ligado.checked){
-            estadoFinal = true
+        var empresa_id = sessionStorage.ID_USUARIO
+        var config = "ATIVO";
+
+        if (desligado.checked){
+            config = "INATIVO"
         }
-
-
-        fetch(`/empresa/ativar/${sessionStorage.getItem("ID_USUARIO")}/${estadoFinal}`, {
+        
+        fetch(`/slack/ativar/${empresa_id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                descricao: textarea_descricao.value
+                estado: config
             })
         }).then(function (resposta) {
 
             if (resposta.ok) {
-                window.alert("Post atualizado com sucesso pelo usuario de email: " + sessionStorage.getItem("EMAIL_USUARIO") + "!");
-                window.location = "/slack-config-empresa.html"
+                window.alert("Configuração atualizada com sucesso!");
+                window.location = "../empresa/slack-config-empresa.html"
             } else if (resposta.status == 404) {
                 window.alert("Deu 404!");
             } else {

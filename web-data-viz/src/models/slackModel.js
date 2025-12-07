@@ -9,9 +9,9 @@ function ligar(empresa_id) {
     return database.executar(instrucao);
 }
 
-function ativar(id_empresa, estado){
+function ativar(empresa_id, estado){
     var instrucao =`
-    UPDATE status_slack_atividade SET estado = '${estado}' WHERE empresa_id = '${id_empresa}'
+    UPDATE Status_slack_atividade SET estado = '${estado}' WHERE empresa_id = ${empresa_id}
     `
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
