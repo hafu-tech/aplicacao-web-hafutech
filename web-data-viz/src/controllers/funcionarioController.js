@@ -44,6 +44,7 @@ function cadastrar(req, res) {
     var nome = req.body.nomeServer;
     var email = req.body.emailServer;
     var empresa = req.body.fkEmpresaServer;
+    var tipo_funcionario = req.body.fkTipoServer
     console.log("passei aqui 2")
 
     
@@ -53,7 +54,7 @@ function cadastrar(req, res) {
         res.status(400).send("Seu email está undefined!");
     } else{
 
-        funcionarioModel.cadastrar(nome, email, empresa)
+        funcionarioModel.cadastrar(nome, email, empresa, tipo_funcionario)
             .then(
                 function (resultado) {
                     res.json(resultado);

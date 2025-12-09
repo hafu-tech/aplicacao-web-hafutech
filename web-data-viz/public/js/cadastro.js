@@ -87,6 +87,8 @@ function cadastrar() {
 function cadastrarFuncionario() {
   var nomeVar = input_nome_funcionario.value;
   var emailVar = input_email_funcionario.value.trim();
+  var tipoVar = document.getElementById("select_tipo").value;
+
 
   if (
     nomeVar.length === 0 ||
@@ -122,7 +124,8 @@ function cadastrarFuncionario() {
 
       nomeServer: nomeVar,
       emailServer: emailVar,
-      fkEmpresaServer: fkEmpresaVar
+      fkEmpresaServer: fkEmpresaVar,
+      fkTipoServer: tipoVar
     }),
   }).then((resposta) => {
     if (resposta.ok) {
