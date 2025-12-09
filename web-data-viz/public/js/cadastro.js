@@ -65,29 +65,30 @@ function cadastrar() {
       senhaServer: senhaVar
     }),
   })
-  .then(res => res.json())
-  .then(data => {
-    var empresa_id = data.empresa_id
-    return fetch(`/slack/ligar/${empresa_id}`, {
-      method: "PUT"
+    .then(res => res.json())
+    .then(data => {
+      var empresa_id = data.empresa_id
+      return fetch(`/slack/ligar/${empresa_id}`, {
+        method: "PUT"
+      })
     })
-  })
-  .then(() => {
-    var spanCadastro = document.querySelector(".span-cadastro")
-    spanCadastro.classList.toggle("display-none")
-    exibirMensagem("Cadastro realizado com sucesso! Redirecionando para o login...", "sucesso");
-  
-    setTimeout(() => {
-      window.location = "login-empresa.html";
-    }, 2000);
+    .then(() => {
+      var spanCadastro = document.querySelector(".span-cadastro")
+      spanCadastro.classList.toggle("display-none")
+      exibirMensagem("Cadastro realizado com sucesso! Redirecionando para o login...", "sucesso");
 
-  })
+      setTimeout(() => {
+        window.location = "login-empresa.html";
+      }, 2000);
+
+    })
 }
 
 function cadastrarFuncionario() {
   var nomeVar = input_nome_funcionario.value;
   var emailVar = input_email_funcionario.value.trim();
   var tipoVar = document.getElementById("select_tipo").value;
+  var fkEmpresaVar = sessionStorage.ID_USUARIO;
 
 
   if (
