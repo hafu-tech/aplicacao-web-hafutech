@@ -79,48 +79,82 @@
      <div class="main-dash">
 
       <div class="container-kpi">
-        <section class="kpis">
-            <div class="kpis-destaque">
-        <article class="kpi-destaque orange">
-            <h3>Ano Escolar Mais Afetado</h3>
-            <p class="valor-kpi" id="kpi_ano_afetado">3º Ano EM</p>
-            <span class="descricao-kpi" id="kpi_ano_afetado_desc">Taxa de evasão: 8,5%</span>
-          </article>
-           <article class="kpi-destaque">
-            <h3>Ano Escolar Menos Afetado</h3>
-            <p class="valor-kpi" id="kpi_ano_afetado">1º Ano Fundamental</p>
-            <span class="descricao-kpi" id="kpi_ano_afetado_desc">Taxa de evasão: 2,5%</span>
-          </article>
-           <article class="kpi-destaque">
-            <h3>Ano Escolar Menos Afetado</h3>
-            <p class="valor-kpi" id="kpi_ano_afetado">1º Ano Fundamental</p>
-            <span class="descricao-kpi" id="kpi_ano_afetado_desc">Taxa de evasão: 2,5%</span>
-          </article>
+        <section class="lado-esquerdo">
+          <section class="kpis">
+              <div class="kpis-destaque">
+          <article class="kpi-destaque orange">
+              <h3>Ano Escolar Mais Afetado</h3>
+              <p class="valor-kpi" id="kpi_ano_afetado">3º Ano EM</p>
+            </article>
+             <article class="kpi-destaque">
+              <h3>Ano Escolar Menos Afetado</h3>
+              <p class="valor-kpi" id="kpi_ano_afetado">1º Ano Fundamental</p>
+            </article>
+              </div>
+  
+          <div class="escola-critica">
+              <ul>
+                  <li>Norte</li>
+                  <li>Nordeste</li>
+                  <li>Centro-Oeste</li>
+                  <li>Sul</li>
+                  <li>Sudeste</li>
+              </ul>
             </div>
-
-        <div class="lista-escola">
-            iudhygudasiojo
-          </div>
-          
+              <div class="grafico-card1">
+                  <div id="chart1"></div>     
+              </div>
+            
+          </section>
         </section>
-
+        <section class="lado-direito">
           <section class="graficos">
-         <div class="grafico-card">
-           <h3>Região Mais Afetada</h3>
+         <div class="grafico-card2">
            <div id="chart3"></div>
          </div>
-          <div class="grafico-card2">
-           <h3>Alunos por Grupo INSE</h3>
-           <div id="chart2"></div>
+         <div class="teste">
+             <div class="grafico-pizza">
+                <div class="grafico-card3">
+                 <div id="chart2"></div>
+               </div>
+              </div>
+              <div class="explicacao-pizza">
+               <h3>Legenda Níveis INSE</h3>
+               <div class="legenda">
+               <div class="valor-inse">
+                 <h3>Valor INSE</h3> 
+               menor que 30<br>
+                 30 a 40<br>
+                 40 a 45<br>
+                 45 a 50<br>
+                 50 a 55<br>
+                 55 a 60<br>
+                 60 a 70<br>
+               maior que 70<br>
+               </div>
+               <div class="nivel-inse">
+                 <h3>Nível INSE</h3>
+                1<br>
+                2<br>
+                3<br>
+                4<br>
+                5<br>
+                6<br>
+                7<br>
+                8<br>
+               </div>
+               </div>
+
+              </div>
          </div>
-            <div class="explicacao-pizza">
-          jhdufyiguhys8a7ig
-       </div>
        </section>
+        </section>
 
     </div>
 
     <script>
+
+        // grafico de pizza
 
         b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
@@ -131,9 +165,13 @@
           type: 'pie', 
           height: 360 
         },
+         title: {
+          text: 'Alunos por Nível INSE',
+          align: 'middle',
+        },
 
         labels: ['Grupo 3', 'Grupo 4', 'Grupo 5', 'Grupo 6'],
-        colors: ['#E5A72A', '#F2C94C', '#F2994A', '#EB5757'],
+        colors: ['#E5A72A', '#'],
 
         legend: { position: 'bottom',
           fontSize: '20px',
@@ -142,9 +180,7 @@
           },
           stroke: {
             show: false
-          },
-        },
-        
+          },        
         dataLabels: {
         enabled: false,
         enabledOnSeries: undefined},
@@ -166,11 +202,13 @@
       pieChart.render();
     });
 
-       var options = {
+    // grafico de piramide
+
+        var options = {
           series: [
           {
-            name: "Região Mais Afetada",
-            data: [1380, 1100, 990, 880, 740],
+            name: "",
+            data: [200, 330, 548, 740, 880],
           },
         ],
           chart: {
@@ -184,31 +222,35 @@
           bar: {
             borderRadius: 0,
             horizontal: true,
-            barHeight: '80%',
+            distributed: true,
+            barHeight: '100%',
             isFunnel: true,
           },
         },
+        colors: [
+          '#F44F5E',
+          '#E55A89',
+          '#D863B1',
+          '#CA6CD8',
+          '#B57BED',
+          '#8D95EB', '#62ACEA',
+          '#4BC3E6',
+        ],
         dataLabels: {
           enabled: true,
           formatter: function (val, opt) {
-            return opt.w.globals.labels[opt.dataPointIndex] + ':  ' + val
+            return opt.w.globals.labels[opt.dataPointIndex] 
           },
           dropShadow: {
             enabled: true,
           },
         },
         title: {
-          text: '',
+          text: 'Pyramid Chart',
           align: 'middle',
         },
         xaxis: {
-          categories: [
-            'Nordeste',
-            'Norte',
-            'Sudeste',
-            'Centro-Oeste',
-            'Sul',
-          ],
+          categories: ['Sweets', 'Processed Foods', 'Healthy Fats', 'Meat', 'Beans & Legumes', 'Dairy', 'Fruits & Vegetables', 'Grains'],
         },
         legend: {
           show: false,
@@ -217,6 +259,35 @@
 
         var chart = new ApexCharts(document.querySelector("#chart3"), options);
         chart.render();
+
+                var options = {
+          series: [{
+          data: [400, 430]
+        }],
+          chart: {
+          type: 'bar',
+          height: 350
+        },
+        plotOptions: {
+          bar: {
+            borderRadius: 4,
+            borderRadiusApplication: 'end',
+            horizontal: true,
+          }
+        },
+        dataLabels: {
+          enabled: false
+        },
+        xaxis: {
+          categories: ['South Korea', 'Canada'],
+        }
+        };
+
+        var chart = new ApexCharts(document.querySelector("#chart1"), options);
+        chart.render();
+      
+      
+      
     </script>
 
 </body>
