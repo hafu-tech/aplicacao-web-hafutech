@@ -6,12 +6,7 @@ body {
   display: flex;
   margin: 0;
   padding: 0;
-<<<<<<< HEAD
-  font-family: "Poppins", sans-serif;
-  background-color: white;
-=======
   font-family:"Poppins", sans-serif;
->>>>>>> 6adc59cb98043cf927cae1a6afd17c33f728c568
 }
 
 :root {
@@ -366,9 +361,6 @@ img {
   font-size: 14px;
   padding: 5px 8px;
   color: white;
-<<<<<<< HEAD
-  background-color: var(--amarelo);
-=======
   background-color: var(--amarelo);}
 
   /* DASHBOARD JULIA */
@@ -381,7 +373,6 @@ img {
   display:flex; 
   flex-direction:column; 
   background:#F3F1E4;
->>>>>>> 6adc59cb98043cf927cae1a6afd17c33f728c568
 }
 
 /* DASHBOARD JULIA */
@@ -403,16 +394,6 @@ img {
   justify-content: space-between;
 }
 
-<<<<<<< HEAD
-.parte-cima-dash {
-  background: #FFFFFF;
-  border-radius: 10px;
-  height: 10vh;
-  padding: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-=======
 .parte-cima-dash{
   background:#FFFFFF;
   border-radius:10px; 
@@ -420,24 +401,12 @@ img {
   width: 70vw;
   margin-left: 7vw;
   align-items:center; 
->>>>>>> 6adc59cb98043cf927cae1a6afd17c33f728c568
   text-align: center;
   justify-content: center;
 }
 
 .nome-pagina-dash {
   display: flex;
-<<<<<<< HEAD
-  font-size: 30px;
-  font-weight: 800;
-  color: #0F172A;
-  text-align: center;
-  margin-left: 23%;
-}
-
-/* KPIs */
-.container-kpi {
-=======
     font-size: 37px; 
     font-weight:800; 
     color:#0F172A; 
@@ -460,7 +429,6 @@ img {
 }
 
 .container-kpi{
->>>>>>> 6adc59cb98043cf927cae1a6afd17c33f728c568
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
@@ -541,57 +509,18 @@ img {
   margin: 6px 0;
 }
 
-<<<<<<< HEAD
-.kpi-destaque .descricao-kpi {
-  font-size: 13px;
-}
-=======
->>>>>>> 6adc59cb98043cf927cae1a6afd17c33f728c568
 
 /* Gráficos */
 .graficos {
   gap: 8px;
   display: flex;
   flex-direction: column;
-<<<<<<< HEAD
-  width: 50%;
-=======
   width: 35vw;
->>>>>>> 6adc59cb98043cf927cae1a6afd17c33f728c568
   height: 50vh;
   margin-top: 30px;
   gap: 3vh;
 }
 
-<<<<<<< HEAD
-.grafico-card {
-  background: #FFFFFF;
-  border-radius: 8px;
-  padding: 12px;
-
-}
-
-.grafico-card2 {
-  background: #FFFFFF;
-  border-radius: 8px;
-  padding: 12px;
-  width: 55%;
-}
-
-.grafico-card h3 {
-  font-size: 14px;
-  color: #0F172A;
-  margin-bottom: 8px;
-}
-
-.lista-escola {
-  background: #FFFFFF;
-  border-radius: 8px;
-  text-align: center;
-  margin-top: 30px;
-  height: 10vh;
-  width: 75%;
-=======
 .grafico-card1{
   margin-top: 1vh;
   background:#FFFFFF; 
@@ -631,49 +560,10 @@ img {
   background:#FFFFFF; 
   border-radius:8px; 
   text-align: center; 
->>>>>>> 6adc59cb98043cf927cae1a6afd17c33f728c568
   align-self: center;
   font-size: 25px;
 }
 
-<<<<<<< HEAD
-.btn-enviar {
-
-  height: 40px;
-  background-color: var(--amarelo);
-  color: #f0f0f0;
-  border: none;
-  border-radius: 5px;
-  transition: 0.4s;
-  cursor: pointer;
-  font-weight: bolder;
-  padding: 8px;
-  width: 200px;
-}
-
-.btn-enviar:hover {
-  background-color: #d19a00;
-  color: #f0f0f0;
-}
-
-.btn-editar2 {
-
-  height: 40px;
-  background-color: var(--amarelo);
-  color: #f0f0f0;
-  border: none;
-  border-radius: 5px;
-  transition: 0.4s;
-  cursor: pointer;
-  font-weight: bolder;
-  padding: 8px;
-  width: 200px;
-}
-
-.btn-editar2:hover {
-  background-color: #d19a00;
-  color: #f0f0f0;
-=======
 .teste{
   display: flex;
   flex-direction: row;
@@ -713,5 +603,4 @@ img {
 
 li{
   list-style: none;
->>>>>>> 6adc59cb98043cf927cae1a6afd17c33f728c568
 }
