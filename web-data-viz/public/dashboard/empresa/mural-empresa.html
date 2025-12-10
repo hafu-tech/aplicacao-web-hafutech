@@ -8,8 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HafuTech | Comentários</title>
 
-    <link rel="stylesheet" href="../../css/dashboards.css">
     <link rel="stylesheet" href="../../css/estilo.css">
+    <link rel="stylesheet" href="../../css/dashboards.css">
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link
@@ -70,7 +70,7 @@
 
         <div class="avisos">
             <div class="container">
-                <h1>Publicar um aviso:</h1>
+                <h1>Publicar uma análise:</h1>
                 <div class="div-form">
                     <form id="form_postagem" method="post" onsubmit="return publicar()">
                         <label>
@@ -87,10 +87,10 @@
                         </label>
                         <br>
                         <br>
-                        <button>Enviar</button>
+                        <button class="btn-enviar">Enviar</button>
                     </form>
                 </div>
-                <h1>Painel de Avisos</h1>
+                <h1>Painel de Análises</h1>
                 <div class="div-results">
                     <div id="feed_container" class="feed-container">
                     </div>
@@ -119,7 +119,7 @@
             descricao: form_postagem.descricao.value
         }
 
-        fetch(`/comentario/publicar/${idUsuario}`, {
+        fetch(`/analise/publicar/${idUsuario}`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -131,7 +131,7 @@
 
             if (resposta.ok) {
                 window.alert("Post realizado com sucesso pelo usuario de ID: " + idUsuario + "!");
-                window.location = "./mural.html";
+                window.location = "../empresa/mural-empresa.html";
                 limparFormulario();
 
             } else if (resposta.status == 404) {
@@ -148,17 +148,17 @@
 
     }
 
-    function editar(idComentario) {
-        sessionStorage.ID_POSTAGEM_EDITANDO = idComentario;
-        console.log("cliquei em editar - " + idComentario);
-        window.alert("Você será redirecionado à página de edição do aviso de id número: " + idComentario);
-        window.location = "/dashboard/edicao-comentario.html"
+    function editar(idAnalise) {
+        sessionStorage.ID_POSTAGEM_EDITANDO = idAnalise
+        console.log("cliquei em editar - " + idAnalise)
+        window.alert("Você será redirecionado à página de edição do aviso de id número: " + idAnalise)
+        window.location = "../empresa/edicao-aviso-empresa.html"
 
     }
 
-    function deletar(idComentario) {
-        console.log("Criar função de apagar post escolhido - ID" + idComentario);
-        fetch(`/comentario/deletar/${idComentario}`, {
+    function deletar(idAnalise) {
+        console.log("Criar função de apagar post escolhido - ID" + idAnalise);
+        fetch(`/analise/deletar/${idAnalise}`, {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json"
@@ -167,7 +167,7 @@
 
             if (resposta.ok) {
                 window.alert("Post deletado com sucesso pelo usuario de email: " + sessionStorage.getItem("EMAIL_USUARIO") + "!");
-                window.location = "/dashboard/mural.html"
+                window.location = "/dashboard/empresa/mural-empresa.html"
             } else if (resposta.status == 404) {
                 window.alert("Deu 404!");
             } else {
@@ -179,7 +179,7 @@
     }
 
     function atualizarFeed() {
-        fetch("/comentario/listar").then(function (resposta) {
+        fetch("/analise/listar").then(function (resposta) {
             if (resposta.ok) {
                 if (resposta.status == 204) {
                     var feed = document.getElementById("feed_container");
@@ -209,7 +209,7 @@
                         var btnDeletar = document.createElement("button");
 
 
-                        spanID.innerHTML = "ID: <b>" + publicacao.idComentario + "</b>";
+                        spanID.innerHTML = "ID: <b>" + publicacao.idAnalise + "</b>";
                         spanTitulo.innerHTML = "Título: <b>" + publicacao.titulo + "</b>";
                         spanNome.innerHTML = "Autor: <b>" + publicacao.usuario + "</b>";
                         divDescricao.innerHTML = "Descrição: <b>" + publicacao.descricao + "</b>";
@@ -230,12 +230,12 @@
                         }
 
                         btnEditar.className = "publicacao-btn-editar"
-                        btnEditar.id = "btnEditar" + publicacao.idComentario;
-                        btnEditar.setAttribute("onclick", `editar(${publicacao.idComentario})`);
+                        btnEditar.id = "btnEditar" + publicacao.idAnalise;
+                        btnEditar.setAttribute("onclick", `editar(${publicacao.idAnalise})`);
 
                         btnDeletar.className = "publicacao-btn-editar"
-                        btnDeletar.id = "btnDeletar" + publicacao.idComentario;
-                        btnDeletar.setAttribute("onclick", `deletar(${publicacao.idComentario})`);
+                        btnDeletar.id = "btnDeletar" + publicacao.idAnalise;
+                        btnDeletar.setAttribute("onclick", `deletar(${publicacao.idAnalise})`);
 
                         divPublicacao.appendChild(spanID);
                         divPublicacao.appendChild(spanNome);

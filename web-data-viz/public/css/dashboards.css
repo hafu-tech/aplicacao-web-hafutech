@@ -6,7 +6,7 @@ body {
   display: flex;
   margin: 0;
   padding: 0;
-  font-family:"Poppins", sans-serif;
+  font-family: "Poppins", sans-serif;
   background-color: white;
 }
 
@@ -31,7 +31,7 @@ img {
   width: 100vw;
   height: 100vh;
   background-color: rgb(247, 244, 244);
-  font-family:"Poppins", sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 .dash-right .avisos .container {
@@ -51,7 +51,7 @@ img {
   width: 95%;
 }
 
-.dash-right .avisos .container .div-form #form_postagem label{
+.dash-right .avisos .container .div-form #form_postagem label {
   font-size: 14px;
 }
 
@@ -80,7 +80,7 @@ img {
 
 .publicacao-btn-editar {
   cursor: pointer;
-  font-family:"Poppins", sans-serif;
+  font-family: "Poppins", sans-serif;
   border: 0;
   border-radius: 5px;
   font-weight: 600;
@@ -352,59 +352,60 @@ img {
   color: var(--amarelo);
 }
 
-.btn-ok{
+.btn-ok {
   width: 80px;
   cursor: pointer;
-  font-family:"Poppins", sans-serif;
+  font-family: "Poppins", sans-serif;
   border: 0;
   border-radius: 5px;
   font-weight: 600;
   font-size: 14px;
   padding: 5px 8px;
   color: white;
-  background-color: var(--amarelo);}
-
-  /* DASHBOARD JULIA */
-
-.dash{
-  margin-left:220px;
-  width:calc(100% - 220px);
-  min-height:100vh;
-  padding:10px;
-  display:flex; 
-  flex-direction:column; 
-  gap:8px;
-  background:#F3F1E4;
+  background-color: var(--amarelo);
 }
 
-.main-dash{
+/* DASHBOARD JULIA */
+
+.dash {
+  margin-left: 220px;
+  width: calc(100% - 220px);
+  min-height: 100vh;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background: #F3F1E4;
+}
+
+.main-dash {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
 
-.parte-cima-dash{
-  background:#FFFFFF;
-   border-radius:10px; 
-   height: 10vh;
-   padding:10px;
-  display:flex; 
-  align-items:center; 
-  justify-content:space-between;
+.parte-cima-dash {
+  background: #FFFFFF;
+  border-radius: 10px;
+  height: 10vh;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   text-align: center;
 }
 
-.nome-pagina-dash{ 
+.nome-pagina-dash {
   display: flex;
-    font-size:30px; 
-    font-weight:800; 
-    color:#0F172A; 
-    text-align: center;
-    margin-left: 23%;
+  font-size: 30px;
+  font-weight: 800;
+  color: #0F172A;
+  text-align: center;
+  margin-left: 23%;
 }
 
 /* KPIs */
-.container-kpi{
+.container-kpi {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
@@ -412,9 +413,9 @@ img {
   margin-top: -2%;
 }
 
-.kpis{
-  display:flex; 
-  margin-bottom:8px;
+.kpis {
+  display: flex;
+  margin-bottom: 8px;
   flex-direction: column;
   width: 75vh;
   gap: 20%;
@@ -422,10 +423,10 @@ img {
   margin-left: 10%;
 }
 
-.kpi{
-  background:#FFFFFF; 
-  border-radius:8px; 
-  text-align: center; 
+.kpi {
+  background: #FFFFFF;
+  border-radius: 8px;
+  text-align: center;
   margin-top: 30px;
   height: 10vh;
   width: 75%;
@@ -433,98 +434,138 @@ img {
   font-size: 25px;
 }
 
-.kpi h3{ 
-  font-size:13px; 
-  color:#666; 
-  margin-bottom:6px; }
-
-.kpi .valor-kpi{ 
-  font-size:20px;
-  font-weight:800; 
-  color:#131d35; 
+.kpi h3 {
+  font-size: 13px;
+  color: #666;
+  margin-bottom: 6px;
 }
 
-.kpi .descricao-kpi{ 
-  font-size:12px; 
-  color:#666; 
+.kpi .valor-kpi {
+  font-size: 20px;
+  font-weight: 800;
+  color: #131d35;
+}
+
+.kpi .descricao-kpi {
+  font-size: 12px;
+  color: #666;
 }
 
 /* Destaques */
-.kpis-destaque{
-  display:flex; 
-  margin-bottom:8px;
+.kpis-destaque {
+  display: flex;
+  margin-bottom: 8px;
   flex-direction: row;
   width: 75vh;
   font-size: 25px;
 }
 
-.kpi-destaque{
-  border-radius:8px; 
-  text-align: center; 
+.kpi-destaque {
+  border-radius: 8px;
+  text-align: center;
   align-self: center;
   width: 300px;
   height: 380px;
   border-radius: 30px;
   background: #e0e0e0;
   box-shadow: 15px 15px 30px #bebebe,
-             -15px -15px 30px #ffffff;
+    -15px -15px 30px #ffffff;
 }
 
-.kpi-destaque.orange{ 
-  background:#E5A72A;
-   color:#111; }
+.kpi-destaque.orange {
+  background: #E5A72A;
+  color: #111;
+}
 
-.kpi-destaque h3{ 
-  font-size:14px;
- }
+.kpi-destaque h3 {
+  font-size: 14px;
+}
 
-.kpi-destaque .valor-kpi{
-   font-size:22p; 
-   font-weight:900;
-   line-height:1.1; 
-   margin:6px 0; 
-  }
+.kpi-destaque .valor-kpi {
+  font-size: 22p;
+  font-weight: 900;
+  line-height: 1.1;
+  margin: 6px 0;
+}
 
-.kpi-destaque .descricao-kpi{ 
-  font-size:13px; 
+.kpi-destaque .descricao-kpi {
+  font-size: 13px;
 }
 
 /* Gráficos */
-.graficos{
-  gap:8px;
+.graficos {
+  gap: 8px;
   display: flex;
   flex-direction: column;
-    width: 50%;
+  width: 50%;
   height: 50vh;
 }
 
-.grafico-card{
-  background:#FFFFFF; 
-  border-radius:8px; 
-  padding:12px;
- 
+.grafico-card {
+  background: #FFFFFF;
+  border-radius: 8px;
+  padding: 12px;
+
 }
 
-.grafico-card2{
-  background:#FFFFFF; 
-  border-radius:8px; 
-  padding:12px;
-  width: 55%; 
+.grafico-card2 {
+  background: #FFFFFF;
+  border-radius: 8px;
+  padding: 12px;
+  width: 55%;
 }
 
-.grafico-card h3{ 
-    font-size:14px; 
-    color:#0F172A; 
-    margin-bottom:8px; 
+.grafico-card h3 {
+  font-size: 14px;
+  color: #0F172A;
+  margin-bottom: 8px;
 }
 
-.lista-escola{
-  background:#FFFFFF; 
-  border-radius:8px; 
-  text-align: center; 
+.lista-escola {
+  background: #FFFFFF;
+  border-radius: 8px;
+  text-align: center;
   margin-top: 30px;
   height: 10vh;
   width: 75%;
   align-self: center;
   font-size: 25px;
+}
+
+.btn-enviar {
+
+  height: 40px;
+  background-color: var(--amarelo);
+  color: #f0f0f0;
+  border: none;
+  border-radius: 5px;
+  transition: 0.4s;
+  cursor: pointer;
+  font-weight: bolder;
+  padding: 8px;
+  width: 200px;
+}
+
+.btn-enviar:hover {
+  background-color: #d19a00;
+  color: #f0f0f0;
+}
+
+.btn-editar2 {
+
+  height: 40px;
+  background-color: var(--amarelo);
+  color: #f0f0f0;
+  border: none;
+  border-radius: 5px;
+  transition: 0.4s;
+  cursor: pointer;
+  font-weight: bolder;
+  padding: 8px;
+  width: 200px;
+}
+
+.btn-editar2:hover {
+  background-color: #d19a00;
+  color: #f0f0f0;
 }

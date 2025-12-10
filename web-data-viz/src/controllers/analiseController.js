@@ -1,7 +1,7 @@
-var comentarioModel = require("../models/comentarioModel");
+var analiseModel = require("../models/analiseModel");
 
 function listar(req, res) {
-    comentarioModel.listar().then(function (resultado) {
+    analiseModel.listar().then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -17,7 +17,7 @@ function listar(req, res) {
 function listarPorUsuario(req, res) {
     var idUsuario = req.params.idUsuario;
 
-    comentarioModel.listarPorUsuario(idUsuario)
+    analiseModel.listarPorUsuario(idUsuario)
         .then(
             function (resultado) {
                 if (resultado.length > 0) {
@@ -42,7 +42,7 @@ function listarPorUsuario(req, res) {
 function pesquisarDescricao(req, res) {
     var descricao = req.params.descricao;
 
-    comentarioModel.pesquisarDescricao(descricao)
+    analiseModel.pesquisarDescricao(descricao)
         .then(
             function (resultado) {
                 if (resultado.length > 0) {
@@ -72,7 +72,7 @@ function publicar(req, res) {
     } else if (idUsuario == undefined) {
         res.status(403).send("O id do usuário está indefinido!");
     } else {
-        comentarioModel.publicar(titulo, descricao, idUsuario)
+        analiseModel.publicar(titulo, descricao, idUsuario)
             .then(
                 function (resultado) {
                     res.json(resultado);
@@ -90,9 +90,9 @@ function publicar(req, res) {
 
 function editar(req, res) {
     var novaDescricao = req.body.descricao;
-    var idComentario = req.params.idComentario;
+    var idAnalise = req.params.idAnalise;
 
-    comentarioModel.editar(novaDescricao, idComentario)
+    analiseModel.editar(novaDescricao, idAnalise)
         .then(
             function (resultado) {
                 res.json(resultado);
@@ -109,9 +109,9 @@ function editar(req, res) {
 }
 
 function deletar(req, res) {
-    var idComentario = req.params.idComentario;
+    var idAnalise = req.params.idAnalise;
 
-    comentarioModel.deletar(idComentario)
+    analiseModel.deletar(idAnalise)
         .then(
             function (resultado) {
                 res.json(resultado);
