@@ -38,9 +38,6 @@
         <div class="div-menu-neta">
           <a onclick="irParaSobre()">Sobre nós</a>
         </div>
-        <div class="div-menu-neta">
-          <a onclick="irParaCuriosidades()">Curiosidades</a>
-        </div>
         <div onclick="irParaDados()" class="div-menu-neta">
           <a>Dados</a>
         </div>
@@ -70,7 +67,7 @@
         <p>SOCIOECONÔMICO</p>
       </div>
 
-      <div class="textos">
+      <div id="dados" class="textos">
         <div class="bloco">
           <h3 id="titulo-texto">Taxa de Analfabetismo e Escolaridade</h3>
           <span id="texto">
@@ -125,3 +122,15 @@
 </body>
 
 </html>
+<script>
+  function irParaDados() {
+  document.getElementById("dados").scrollIntoView({
+    behavior: "smooth"
+  });
+}
+function irParaSobre() {
+  document.getElementById("sobre").scrollIntoView({
+    behavior: "smooth"
+  });
+}
+</script>
