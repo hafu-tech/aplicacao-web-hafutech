@@ -3,292 +3,294 @@
 
 <head>
 
-    <link rel="shortcut icon" href="../assets/icon/favicon2.ico" type="image/x-icon">
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HafuTech | Dashboard</title>
+  <link rel="shortcut icon" href="../assets/icon/favicon2.ico" type="image/x-icon">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HafuTech | Dashboard</title>
 
 
-    <link rel="stylesheet" href="../../css/dashboards.css">
-    <script src="../../js/sessao.js"></script>
+  <link rel="stylesheet" href="../../css/dashboards.css">
+  <script src="../../js/sessao.js"></script>
 
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-        rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet">
 
 
-    <!-- Biblioteca do ChartApex -->
-    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+  <!-- Biblioteca do ChartApex -->
+  <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 
 </head>
 
 <body>
 
-    <div class="header-left">
+  <div class="header-left">
 
-        <a href="../../index-logado.html"><img src="../../assets/logo.png" alt="LOGO"></a>
+    <a href="../../index-logado.html"><img src="../../assets/logo.png" alt="LOGO"></a>
 
-        <div class="hello">
-            <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
-        </div>
-
-        <div class="btn-nav-white">
-            <a href="edicao-empresa.html">
-                <h3>Perfil</h3>
-            </a>
-        </div>
-
-
-        <div class="btn-nav">
-            <a href="dashboard-empresa.html">
-                <h3>Dashboard</h3>
-            </a>
-        </div>
-
-        <div class="btn-nav-white">
-            <a href="mural-empresa.html">
-                <h3>Análises</h3>
-            </a>
-        </div>
-
-        <div class="btn-nav-white">
-            <a href="slack-config-empresa.html">
-                <h3>Edição de Notificação</h3>
-            </a>
-        </div>
-
-        <div class="btn-nav-white">
-            <a href="criar-usuario.html">
-                <h3>Gerenciar usuários</h3>
-            </a>
-        </div>
-
-        <div class="btn-logout" onclick="limparSessao()">
-            <h3>Sair</h3>
-        </div>
-
+    <div class="hello">
+      <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
     </div>
 
-   <main class="dash">
-    <section class="parte-cima-dash" >
+    <div class="btn-nav-white">
+      <a href="edicao-empresa.html">
+        <h3>Perfil</h3>
+      </a>
+    </div>
+
+
+    <div class="btn-nav">
+      <a href="dashboard-empresa.html">
+        <h3>Dashboard</h3>
+      </a>
+    </div>
+
+    <div class="btn-nav-white">
+      <a href="mural-empresa.html">
+        <h3>Análises</h3>
+      </a>
+    </div>
+
+    <div class="btn-nav-white">
+      <a href="slack-config-empresa.html">
+        <h3>Edição de Notificação</h3>
+      </a>
+    </div>
+
+    <div class="btn-nav-white">
+      <a href="criar-usuario.html">
+        <h3>Gerenciar usuários</h3>
+      </a>
+    </div>
+
+    <div class="btn-logout" onclick="limparSessao()">
+      <h3>Sair</h3>
+    </div>
+
+  </div>
+
+  <main class="dash">
+    <section class="parte-cima-dash">
       <div class="nome-pagina-dash">Taxa de Evasão Escolar - INSE e Regiões Brasileiras</div>
     </section>
 
-     <div class="main-dash">
+    <div class="main-dash">
 
       <div class="container-kpi">
         <section class="lado-esquerdo">
           <section class="kpis">
-              <div class="kpis-destaque">
-          <article class="kpi-destaque orange">
-              <h3>Ano Escolar Mais Afetado</h3>
-              <p class="valor-kpi" id="kpi_ano_afetado">3º Ano EM</p>
-            </article>
-             <article class="kpi-destaque">
-              <h3>Ano Escolar Menos Afetado</h3>
-              <p class="valor-kpi" id="kpi_ano_afetado">1º Ano Fundamental</p>
-            </article>
-              </div>
-  
-          <div class="escola-critica">
-              <ul>
-                  <li>Norte</li>
-                  <li>Nordeste</li>
-                  <li>Centro-Oeste</li>
-                  <li>Sul</li>
-                  <li>Sudeste</li>
-              </ul>
+            <div class="kpis-destaque">
+              <article class="kpi-destaque orange">
+                <h3>Ano Escolar Mais Afetado</h3>
+                <p class="valor-kpi" id="kpi_ano_afetado">3º Ano EM</p>
+              </article>
+              <article class="kpi-destaque">
+                <h3>Ano Escolar Menos Afetado</h3>
+                <p class="valor-kpi" id="kpi_ano_afetado">1º Ano Fundamental</p>
+              </article>
             </div>
-              <div class="grafico-card1">
-                  <div id="chart1"></div>     
-              </div>
-            
+
+            <div class="escola-critica">
+              <ul>
+                <li>Norte</li>
+                <li>Nordeste</li>
+                <li>Centro-Oeste</li>
+                <li>Sul</li>
+                <li>Sudeste</li>
+              </ul>
+
+            </div>
+            <div class="grafico-card1">
+              <div id="chart1"></div>
+            </div>
+
           </section>
         </section>
         <section class="lado-direito">
           <section class="graficos">
-         <div class="grafico-card2">
-           <div id="chart3"></div>
-         </div>
-         <div class="teste">
-             <div class="grafico-pizza">
+            <div class="grafico-card2">
+              <div id="chart3"></div>
+            </div>
+            <div class="teste">
+              <div class="grafico-pizza">
                 <div class="grafico-card3">
-                 <div id="chart2"></div>
-               </div>
+                  <div id="chart2"></div>
+                </div>
               </div>
               <div class="explicacao-pizza">
-               <h3>Legenda Níveis INSE</h3>
-               <div class="legenda">
-               <div class="valor-inse">
-                 <h3>Valor INSE</h3> 
-               menor que 30<br>
-                 30 a 40<br>
-                 40 a 45<br>
-                 45 a 50<br>
-                 50 a 55<br>
-                 55 a 60<br>
-                 60 a 70<br>
-               maior que 70<br>
-               </div>
-               <div class="nivel-inse">
-                 <h3>Nível INSE</h3>
-                1<br>
-                2<br>
-                3<br>
-                4<br>
-                5<br>
-                6<br>
-                7<br>
-                8<br>
-               </div>
-               </div>
+                <h3>Legenda Níveis INSE</h3>
+                <div class="legenda">
+                  <div class="valor-inse">
+                    <h3>Valor INSE</h3>
+                    menor que 30<br>
+                    30 a 40<br>
+                    40 a 45<br>
+                    45 a 50<br>
+                    50 a 55<br>
+                    55 a 60<br>
+                    60 a 70<br>
+                    maior que 70<br>
+                  </div>
+                  <div class="nivel-inse">
+                    <h3>Nível INSE</h3>
+                    1<br>
+                    2<br>
+                    3<br>
+                    4<br>
+                    5<br>
+                    6<br>
+                    7<br>
+                    8<br>
+                  </div>
+                </div>
 
               </div>
-         </div>
-       </section>
+            </div>
+          </section>
         </section>
 
-    </div>
+      </div>
 
-    <script>
+      <script>
 
         // grafico de pizza
 
         b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
         document.addEventListener('DOMContentLoaded', function () {
-      var pieOptions = {
-        series: [287, 1342, 892, 434],
-        chart: { 
-          type: 'pie', 
-          height: 360 
-        },
-         title: {
-          text: 'Alunos por Nível INSE',
-          align: 'middle',
-        },
+          var pieOptions = {
+            series: [287, 1342, 892, 434],
+            chart: {
+              type: 'pie',
+              height: 360
+            },
+            title: {
+              text: 'Alunos por Nível INSE',
+              align: 'middle',
+            },
 
-        labels: ['Grupo 3', 'Grupo 4', 'Grupo 5', 'Grupo 6'],
-        colors: ['#E5A72A', '#'],
+            labels: ['Grupo 3', 'Grupo 4', 'Grupo 5', 'Grupo 6'],
+            colors: ['#E5A72A', '#F2C94C', '#F2994A', '#EB5757'],
 
-        legend: { position: 'bottom',
-          fontSize: '20px',
-          labels: {
-            colors: [],
-          },
-          stroke: {
-            show: false
-          },        
-        dataLabels: {
-        enabled: false,
-        enabledOnSeries: undefined},
+            legend: {
+              position: 'bottom',
+              fontSize: '20px',
+              labels: {
+                colors: [],
+              },
+              stroke: {
+                show: false
+              },
+              dataLabels: {
+                enabled: false,
+                enabledOnSeries: undefined
+              },
 
-        plotOptions: {
-          pie: {
-              size: '50%'
-            
-          }
-        },
+              plotOptions: {
+                pie: {
+                  size: '50%'
 
-        style: {
-        fontSize: '100px',
-        fontFamily: 'Poppins, sans-serif',
-        fontWeight: 'bold',
-        }
-      };
-      var pieChart = new ApexCharts(document.querySelector('#chart2'), pieOptions);
-      pieChart.render();
-    });
+                }
+              },
 
-    // grafico de piramide
+              style: {
+                fontSize: '100px',
+                fontFamily: 'Poppins, sans-serif',
+                fontWeight: 'bold',
+              }
+            }};
+            var pieChart = new ApexCharts(document.querySelector('#chart2'), pieOptions)
+            pieChart.render()
+          });
+
+        // grafico de piramide
 
         var options = {
           series: [
-          {
-            name: "",
-            data: [200, 330, 548, 740, 880],
-          },
-        ],
+            {
+              name: "",
+              data: [200, 330, 548, 740, 880],
+            },
+          ],
           chart: {
-          type: 'bar',
-          height: 350,
-          dropShadow: {
+            type: 'bar',
+            height: 350,
+            dropShadow: {
+              enabled: true,
+            },
+          },
+          plotOptions: {
+            bar: {
+              borderRadius: 0,
+              horizontal: true,
+              distributed: true,
+              barHeight: '100%',
+              isFunnel: true,
+            },
+          },
+          colors: [
+            '#F44F5E',
+            '#E55A89',
+            '#D863B1',
+            '#CA6CD8',
+            '#B57BED',
+            '#8D95EB', '#62ACEA',
+            '#4BC3E6',
+          ],
+          dataLabels: {
             enabled: true,
+            formatter: function (val, opt) {
+              return opt.w.globals.labels[opt.dataPointIndex]
+            },
+            dropShadow: {
+              enabled: true,
+            },
           },
-        },
-        plotOptions: {
-          bar: {
-            borderRadius: 0,
-            horizontal: true,
-            distributed: true,
-            barHeight: '100%',
-            isFunnel: true,
+          title: {
+            text: 'Pyramid Chart',
+            align: 'middle',
           },
-        },
-        colors: [
-          '#F44F5E',
-          '#E55A89',
-          '#D863B1',
-          '#CA6CD8',
-          '#B57BED',
-          '#8D95EB', '#62ACEA',
-          '#4BC3E6',
-        ],
-        dataLabels: {
-          enabled: true,
-          formatter: function (val, opt) {
-            return opt.w.globals.labels[opt.dataPointIndex] 
+          xaxis: {
+            categories: ['Sweets', 'Processed Foods', 'Healthy Fats', 'Meat', 'Beans & Legumes', 'Dairy', 'Fruits & Vegetables', 'Grains'],
           },
-          dropShadow: {
-            enabled: true,
+          legend: {
+            show: false,
           },
-        },
-        title: {
-          text: 'Pyramid Chart',
-          align: 'middle',
-        },
-        xaxis: {
-          categories: ['Sweets', 'Processed Foods', 'Healthy Fats', 'Meat', 'Beans & Legumes', 'Dairy', 'Fruits & Vegetables', 'Grains'],
-        },
-        legend: {
-          show: false,
-        },
         };
 
         var chart = new ApexCharts(document.querySelector("#chart3"), options);
         chart.render();
 
-                var options = {
+        var options = {
           series: [{
-          data: [400, 430]
-        }],
+            data: [400, 430]
+          }],
           chart: {
-          type: 'bar',
-          height: 350
-        },
-        plotOptions: {
-          bar: {
-            borderRadius: 4,
-            borderRadiusApplication: 'end',
-            horizontal: true,
+            type: 'bar',
+            height: 350
+          },
+          plotOptions: {
+            bar: {
+              borderRadius: 4,
+              borderRadiusApplication: 'end',
+              horizontal: true,
+            }
+          },
+          dataLabels: {
+            enabled: false
+          },
+          xaxis: {
+            categories: ['South Korea', 'Canada'],
           }
-        },
-        dataLabels: {
-          enabled: false
-        },
-        xaxis: {
-          categories: ['South Korea', 'Canada'],
-        }
         };
 
         var chart = new ApexCharts(document.querySelector("#chart1"), options);
         chart.render();
+
       
-      
-      
-    </script>
+      </script>
 
 </body>
 

@@ -35,7 +35,27 @@ function ativar(req, res) {
         );
 }
 
+function deletar(req, res) {
+
+    var id = req.params.empresa_id;
+
+    slackModel.deletar(id)
+        .then(
+            function (resultado) {
+                res.json(resultado);
+            }
+        )
+        .catch(
+            function (erro) {
+                console.log(erro);
+                console.log("Houve um erro ao deletar o usuário: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
+
 module.exports = {
     ligar,
-    ativar
+    ativar,
+    deletar
 }

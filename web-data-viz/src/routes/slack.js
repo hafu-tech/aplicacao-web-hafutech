@@ -7,10 +7,13 @@ router.put("/ligar/:empresa_id", (req, res) => {
     slackController.ligar(req, res)
 })
 
-//Recebendo os dados do html e direcionando para a função cadastrar de empresaController.js
 router.put("/ativar/:empresa_id", function (req, res) {
     console.log("passei aqui")
     slackController.ativar(req, res);
 })
+
+router.delete("/excluir/config/:empresa_id", function (req, res) {
+    slackController.deletar(req, res);
+});
 
 module.exports = router;

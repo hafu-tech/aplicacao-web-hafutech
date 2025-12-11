@@ -123,30 +123,36 @@
         }
     }
 
-    function excluirConta() {
+    async function excluirConta() {
+    const id = sessionStorage.ID_USUARIO;
+    console.log("Criar função de apagar usuário escolhido - ID " + id);
 
-        var id = sessionStorage.ID_USUARIO
+    try {
+        const excluirSlack = await fetch(`/slack/excluir/config/${id}`, { method: "DELETE" });
+        if (!excluirSlack.ok) {
+            throw new Error("Erro ao deletar registros do Slack: " + excluirSlack.status);
+        }
+        console.log("Registros do Slack deletados com sucesso");
 
-        console.log("Criar função de apagar usuário escolhido - ID" + id);
-        fetch(`/empresa/deletar/${id}`, {
+        const excluirConta = await fetch(`/empresa/deletar/${id}`, {
             method: "DELETE",
-            headers: {
-                "Content-Type": "application/json"
-            }
-        }).then(function (resposta) {
-
-            if (resposta.ok) {
-                window.alert("Usuário deletado com sucesso pelo usuario de email: " + sessionStorage.getItem("EMAIL_USUARIO") + "!");
-                window.location = "../../index.html"
-            } else if (resposta.status == 404) {
-                window.alert("Deu 404!");
-            } else {
-                throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
-            }
-        }).catch(function (resposta) {
-            console.log(`#ERRO: ${resposta}`);
+            headers: { "Content-Type": "application/json" }
         });
+
+        if (excluirConta.ok) {
+            window.alert("Usuário deletado com sucesso pelo usuário de email: " + sessionStorage.getItem("EMAIL_USUARIO") + "!");
+            window.location = "../../index.html";
+        } else if (excluirConta.status == 404) {
+            window.alert("Empresa não encontrada (404)");
+        } else {
+            throw new Error("Houve um erro ao deletar a empresa. Código da resposta: " + excluirConta.status);
+        }
+
+    } catch (erro) {
+        console.error("Erro durante exclusão:", erro);
+        window.alert("Houve um erro ao deletar: " + erro.message);
     }
+}
 
 </script>
 

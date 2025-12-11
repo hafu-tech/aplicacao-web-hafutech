@@ -6,7 +6,7 @@ body {
   display: flex;
   margin: 0;
   padding: 0;
-  font-family:"Poppins", sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 :root {
@@ -361,74 +361,55 @@ img {
   font-size: 14px;
   padding: 5px 8px;
   color: white;
-  background-color: var(--amarelo);}
-
-  /* DASHBOARD JULIA */
-
-.dash{
-  margin-left: 15vw;
-  width: 85vw;
-  height: 100vh;
-  padding:10px;
-  display:flex; 
-  flex-direction:column; 
-  background:#F3F1E4;
+  background-color: var(--amarelo);
 }
 
 /* DASHBOARD JULIA */
 
 .dash {
-  margin-left: 220px;
-  width: calc(100% - 220px);
-  min-height: 100vh;
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+  margin-left: 15vw;
+  width: 85vw;
+  height: 100vh;
   background: #F3F1E4;
 }
 
-.main-dash {
+.parte-cima-dash {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-
-.parte-cima-dash{
-  background:#FFFFFF;
-  border-radius:10px; 
-  height: 8vh;
+  background: #FFFFFF;
+  border-radius: 10px;
+  height: 6vh;
   width: 70vw;
+  margin-top: 10px;
   margin-left: 7vw;
-  align-items:center; 
+  align-items: center;
   text-align: center;
   justify-content: center;
 }
 
 .nome-pagina-dash {
   display: flex;
-    font-size: 37px; 
-    font-weight:800; 
-    color:#0F172A; 
+  font-size: 37px;
+  font-weight: 800;
+  color: #0F172A;
 }
 
 /* KPIs */
 
-.lado-esquerdo{
+.lado-esquerdo {
   display: flex;
   flex-direction: column;
   margin-top: -1vh;
   margin-left: 2vw;
 }
 
-.lado-direito{
+.lado-direito {
   display: flex;
   flex-direction: column;
   margin-top: 20px;
   margin-left: 6vw;
 }
 
-.container-kpi{
+.container-kpi {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
@@ -475,6 +456,7 @@ img {
 .kpis-destaque {
   display: flex;
   margin-bottom: 8px;
+  margin-right: 50px;
   flex-direction: row;
   width: 40vw;
   font-size: 25px;
@@ -485,6 +467,7 @@ img {
   border-radius: 8px;
   text-align: center;
   align-self: center;
+  margin-right: 50px;
   width: 9876vw;
   height: 15vh;
   border-radius: 30px;
@@ -521,11 +504,11 @@ img {
   gap: 3vh;
 }
 
-.grafico-card1{
+.grafico-card1 {
   margin-top: 1vh;
-  background:#FFFFFF; 
-  border-radius:8px; 
-  padding:12px;
+  background: #FFFFFF;
+  border-radius: 8px;
+  padding: 12px;
   width: 38vw;
   height: 38vh;
   align-items: center;
@@ -533,38 +516,38 @@ img {
   margin-right: -3vw;
 }
 
-.grafico-card2{
-  background:#FFFFFF; 
-  border-radius:8px; 
-  padding:12px;
+.grafico-card2 {
+  background: #FFFFFF;
+  border-radius: 8px;
+  padding: 12px;
   width: 37vw;
   height: 45vh;
   margin-top: -2vh;
   margin-left: -5vh;
 }
 
-.grafico-card3{
-  background:#FFFFFF; 
-  border-radius:8px; 
-  padding:12px;
+.grafico-card3 {
+  background: #FFFFFF;
+  border-radius: 8px;
+  padding: 12px;
   width: 20vw;
   height: 38vh;
   margin-top: 1px;
   margin-left: -5vh;
 }
 
-.grafico-pizza{
+.grafico-pizza {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
-  background:#FFFFFF; 
-  border-radius:8px; 
-  text-align: center; 
+  background: #FFFFFF;
+  border-radius: 8px;
+  text-align: center;
   align-self: center;
   font-size: 25px;
 }
 
-.teste{
+.teste {
   display: flex;
   flex-direction: row;
   gap: 2vw;
@@ -572,7 +555,7 @@ img {
   width: 35.8vw;
 }
 
-.explicacao-pizza{
+.explicacao-pizza {
   background-color: #FFFFFF;
   width: 20vw;
   border-radius: 8px;
@@ -581,7 +564,7 @@ img {
   text-align: center;
 }
 
-.legenda{
+.legenda {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -592,15 +575,15 @@ img {
   margin-top: 10px;
 }
 
-.valor-inse{
+.valor-inse {
   text-align: left;
 }
 
-.escola-critica{
+.escola-critica {
   margin-top: 25px;
   font-size: 25px;
 }
 
-li{
+li {
   list-style: none;
 }
