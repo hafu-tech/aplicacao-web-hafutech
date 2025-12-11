@@ -18,6 +18,7 @@ var empresaRouter = require("./src/routes/empresa");
 var analiseRouter = require("./src/routes/analise");
 var funcionarioRouter = require("./src/routes/funcionario");
 var slackRouter = require("./src/routes/slack");
+var dashboardRouter = require("./src/routes/dashboard");
 
 
 app.use(express.json());
@@ -31,7 +32,7 @@ app.use("/empresa", empresaRouter);
 app.use("/analise", analiseRouter);
 app.use("/funcionario", funcionarioRouter);
 app.use("/slack", slackRouter);
-
+app.use("/dashboard", dashboardRouter);
 
 app.listen(PORTA_APP, function () {
     console.log(`

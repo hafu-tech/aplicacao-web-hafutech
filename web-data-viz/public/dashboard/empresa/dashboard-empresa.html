@@ -83,25 +83,23 @@
           <section class="kpis">
             <div class="kpis-destaque">
               <article class="kpi-destaque orange">
-                <h3>Ano Escolar Mais Afetado</h3>
-                <p class="valor-kpi" id="kpi_ano_afetado">3º Ano EM</p>
+                <h3>Total de escolas críticas</h3>
+                <p class="valor-kpi" id="kpi_total_escolas_criticas">-</p>
               </article>
+
               <article class="kpi-destaque">
-                <h3>Ano Escolar Menos Afetado</h3>
-                <p class="valor-kpi" id="kpi_ano_afetado">1º Ano Fundamental</p>
+                <h3>Alunos em escolas críticas</h3>
+                <p class="valor-kpi" id="kpi_total_alunos_criticos">-</p>
               </article>
             </div>
 
             <div class="escola-critica">
-              <ul>
-                <li>Norte</li>
-                <li>Nordeste</li>
-                <li>Centro-Oeste</li>
-                <li>Sul</li>
-                <li>Sudeste</li>
-              </ul>
+              <h3>Escolas críticas por região</h3>
 
+              <div id="lista_escolas_criticas" class="tabela-escolas-criticas">
+              </div>
             </div>
+
             <div class="grafico-card1">
               <div id="chart1"></div>
             </div>
@@ -154,142 +152,309 @@
       </div>
 
       <script>
-
-        // grafico de pizza
-
+        // mostra o nome do usuário logado
         b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
-        document.addEventListener('DOMContentLoaded', function () {
-          var pieOptions = {
-            series: [287, 1342, 892, 434],
-            chart: {
-              type: 'pie',
-              height: 360
-            },
-            title: {
-              text: 'Alunos por Nível INSE',
-              align: 'middle',
-            },
+        document.addEventListener("DOMContentLoaded", function () {
+          carregarKpis();
+          carregarGraficoPizza();
+          carregarGraficoPiramide();
+          carregarGraficoBarra();
+          carregarListaEscolasCriticas();
+        });
 
-            labels: ['Grupo 3', 'Grupo 4', 'Grupo 5', 'Grupo 6'],
-            colors: ['#E5A72A', '#F2C94C', '#F2994A', '#EB5757'],
+        // ===================== KPIs =====================
 
-            legend: {
-              position: 'bottom',
-              fontSize: '20px',
-              labels: {
-                colors: [],
-              },
-              stroke: {
-                show: false
-              },
-              dataLabels: {
-                enabled: false,
-                enabledOnSeries: undefined
-              },
-
-              plotOptions: {
-                pie: {
-                  size: '50%'
-
-                }
-              },
-
-              style: {
-                fontSize: '100px',
-                fontFamily: 'Poppins, sans-serif',
-                fontWeight: 'bold',
+        function carregarKpis() {
+          // KPI 1 – total de escolas críticas
+          fetch("/dashboard/total-escolas-criticas")
+            .then(function (resposta) {
+              return resposta.status === 200 ? resposta.json() : null;
+            })
+            .then(function (dado) {
+              if (!dado) return;
+              var elementoKpiEscolas = document.getElementById("kpi_total_escolas_criticas");
+              if (elementoKpiEscolas) {
+                elementoKpiEscolas.innerText = dado.total_escolas_criticas;
               }
-            }};
-            var pieChart = new ApexCharts(document.querySelector('#chart2'), pieOptions)
-            pieChart.render()
-          });
+            })
+            .catch(function (erro) {
+              console.error("Erro KPI total escolas críticas:", erro);
+            });
 
-        // grafico de piramide
+          // KPI 2 – total de alunos em escolas críticas
+          fetch("/dashboard/total-alunos-criticos")
+            .then(function (resposta) {
+              return resposta.status === 200 ? resposta.json() : null;
+            })
+            .then(function (dado) {
+              if (!dado) return;
+              var elementoKpiAlunos = document.getElementById("kpi_total_alunos_criticos");
+              if (elementoKpiAlunos) {
+                elementoKpiAlunos.innerText = dado.total_alunos_criticos;
+              }
+            })
+            .catch(function (erro) {
+              console.error("Erro KPI total alunos críticos:", erro);
+            });
+        }
 
-        var options = {
-          series: [
-            {
-              name: "",
-              data: [200, 330, 548, 740, 880],
-            },
-          ],
-          chart: {
-            type: 'bar',
-            height: 350,
-            dropShadow: {
-              enabled: true,
-            },
-          },
-          plotOptions: {
-            bar: {
-              borderRadius: 0,
-              horizontal: true,
-              distributed: true,
-              barHeight: '100%',
-              isFunnel: true,
-            },
-          },
-          colors: [
-            '#F44F5E',
-            '#E55A89',
-            '#D863B1',
-            '#CA6CD8',
-            '#B57BED',
-            '#8D95EB', '#62ACEA',
-            '#4BC3E6',
-          ],
-          dataLabels: {
-            enabled: true,
-            formatter: function (val, opt) {
-              return opt.w.globals.labels[opt.dataPointIndex]
-            },
-            dropShadow: {
-              enabled: true,
-            },
-          },
-          title: {
-            text: 'Pyramid Chart',
-            align: 'middle',
-          },
-          xaxis: {
-            categories: ['Sweets', 'Processed Foods', 'Healthy Fats', 'Meat', 'Beans & Legumes', 'Dairy', 'Fruits & Vegetables', 'Grains'],
-          },
-          legend: {
-            show: false,
-          },
-        };
+        // ===================== GRÁFICO DE PIZZA =====================
 
-        var chart = new ApexCharts(document.querySelector("#chart3"), options);
-        chart.render();
+        function carregarGraficoPizza() {
+          fetch("/dashboard/alunos-nivel-inse")
+            .then(function (resposta) {
+              if (resposta.status === 204) {
+                console.warn("Nenhum dado para alunos por nível INSE");
+                return null;
+              }
+              return resposta.json();
+            })
+            .then(function (dados) {
+              if (!dados) return;
 
-        var options = {
-          series: [{
-            data: [400, 430]
-          }],
-          chart: {
-            type: 'bar',
-            height: 350
-          },
-          plotOptions: {
-            bar: {
-              borderRadius: 4,
-              borderRadiusApplication: 'end',
-              horizontal: true,
-            }
-          },
-          dataLabels: {
-            enabled: false
-          },
-          xaxis: {
-            categories: ['South Korea', 'Canada'],
-          }
-        };
+              var seriesAlunos = dados.map(function (registro) {
+                return Number(registro.total_alunos);
+              });
 
-        var chart = new ApexCharts(document.querySelector("#chart1"), options);
-        chart.render();
+              var labelsInse = dados.map(function (registro) {
+                return "Grupo " + registro.nivel_inse;
+              });
 
-      
+              var opcoesPizza = {
+                series: seriesAlunos,
+                chart: {
+                  type: "pie",
+                  height: 280
+                },
+                title: {
+                  text: "Alunos por Nível INSE",
+                  align: "middle"
+                },
+                labels: labelsInse,
+                colors: [
+                  "#E5A72A",
+                  "#F2C94C",
+                  "#F2994A",
+                  "#EB5757",
+                  "#6FCF97",
+                  "#56CCF2",
+                  "#9B51E0",
+                  "#2D9CDB"
+                ],
+                legend: {
+                  position: "bottom",
+                  fontSize: "16px"
+                },
+                dataLabels: {
+                  enabled: true,
+                  formatter: function (valor) {
+                    return valor.toFixed(1) + "%";
+                  }
+                }
+              };
+
+              var graficoPizza = new ApexCharts(
+                document.querySelector("#chart2"),
+                opcoesPizza
+              );
+              graficoPizza.render();
+            })
+            .catch(function (erro) {
+              console.error("Erro ao carregar gráfico de pizza:", erro);
+            });
+        }
+
+        // ===================== GRÁFICO PIRÂMIDE =====================
+
+        function carregarGraficoPiramide() {
+          fetch("/dashboard/pontos-inse-regiao")
+            .then(function (resposta) {
+              if (resposta.status === 204) {
+                console.warn("Nenhum dado para pontos INSE por região");
+                return null;
+              }
+              return resposta.json();
+            })
+            .then(function (dados) {
+              if (!dados) return;
+
+              var categoriasRegiao = dados.map(function (registro) {
+                return registro.regiao;
+              });
+
+              var valoresInse = dados.map(function (registro) {
+                return Number(registro.valor_inse);
+              });
+
+              var opcoesPiramide = {
+                series: [
+                  {
+                    name: "Soma INSE",
+                    data: valoresInse
+                  }
+                ],
+                chart: {
+                  type: "bar",
+                  height: 350,
+                  dropShadow: {
+                    enabled: true
+                  }
+                },
+                plotOptions: {
+                  bar: {
+                    borderRadius: 0,
+                    horizontal: true,
+                    distributed: true,
+                    barHeight: "100%",
+                    isFunnel: true
+                  }
+                },
+                dataLabels: {
+                  enabled: true,
+                  formatter: function (valor, contexto) {
+                    return categoriasRegiao[contexto.dataPointIndex];
+                  },
+                  dropShadow: {
+                    enabled: true
+                  }
+                },
+                title: {
+                  text: "Pontos INSE por Região",
+                  align: "middle"
+                },
+                xaxis: {
+                  categories: categoriasRegiao
+                },
+                legend: {
+                  show: false
+                }
+              };
+
+              var graficoPiramide = new ApexCharts(
+                document.querySelector("#chart3"),
+                opcoesPiramide
+              );
+              graficoPiramide.render();
+            })
+            .catch(function (erro) {
+              console.error("Erro ao carregar gráfico pirâmide:", erro);
+            });
+        }
+
+        // ===================== GRÁFICO BARRAS (REDE) =====================
+
+        function carregarGraficoBarra() {
+          fetch("/dashboard/media-inse-rede")
+            .then(function (resposta) {
+              if (resposta.status === 204) {
+                console.warn("Nenhum dado para média INSE por rede");
+                return null;
+              }
+              return resposta.json();
+            })
+            .then(function (dados) {
+              if (!dados) return;
+
+              var categoriasRede = dados.map(function (registro) {
+                return registro.rede;
+              });
+
+              var valoresMediaInse = dados.map(function (registro) {
+                return Number(registro.media_inse);
+              });
+
+              var opcoesBarra = {
+                series: [
+                  {
+                    data: valoresMediaInse
+                  }
+                ],
+                chart: {
+                  type: "bar",
+                  height: 260
+                },
+                plotOptions: {
+                  bar: {
+                    borderRadius: 4,
+                    borderRadiusApplication: "end",
+                    horizontal: true
+                  }
+                },
+                dataLabels: {
+                  enabled: false
+                },
+                xaxis: {
+                  categories: categoriasRede
+                },
+                title: {
+                  text: "Média INSE por Rede",
+                  align: "left"
+                }
+              };
+
+              var graficoBarra = new ApexCharts(
+                document.querySelector("#chart1"),
+                opcoesBarra
+              );
+              graficoBarra.render();
+            })
+            .catch(function (erro) {
+              console.error("Erro ao carregar gráfico de barras:", erro);
+            });
+        }
+
+        // ===================== TABELA ESCOLAS CRÍTICAS =====================
+
+        function carregarListaEscolasCriticas() {
+          var containerTabela = document.getElementById("lista_escolas_criticas");
+          if (!containerTabela) return;
+
+          fetch("/dashboard/escolas-criticas-regiao")
+            .then(function (resposta) {
+              if (resposta.status === 204) {
+                containerTabela.innerHTML = "<p>Nenhum dado encontrado.</p>";
+                return null;
+              }
+              return resposta.json();
+            })
+            .then(function (dados) {
+              if (!dados) return;
+
+              var linhasTabela = dados
+                .map(function (registro) {
+                  return `
+              <tr>
+                <td>${registro.regiao}</td>
+                <td>${registro.inse_2014}</td>
+                <td>${registro.inse_2015}</td>
+                <td>${registro.qtd_escolas_criticas}</td>
+              </tr>
+            `;
+                })
+                .join("");
+
+              containerTabela.innerHTML = `
+          <table>
+            <thead>
+              <tr>
+                <th>Região</th>
+                <th>INSE 2014</th>
+                <th>INSE 2015</th>
+                <th>Escolas críticas</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${linhasTabela}
+            </tbody>
+          </table>
+        `;
+            })
+            .catch(function (erro) {
+              console.error("Erro ao carregar escolas críticas por região:", erro);
+              containerTabela.innerHTML = "<p>Erro ao carregar dados.</p>";
+            });
+        }
       </script>
 
 </body>

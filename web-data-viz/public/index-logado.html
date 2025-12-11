@@ -36,15 +36,12 @@
     <div class="div-menu-pai">
       <div class="div-menu-filha">
         <div class="div-menu-neta">
-          <a>Sobre</a>
+          <a onclick="irParaSobre()">Sobre nós</a>
         </div>
         <div class="div-menu-neta">
-          <a>Quem somos</a>
+          <a onclick="irParaCuriosidades()">Curiosidades</a>
         </div>
-        <div class="div-menu-neta">
-          <a>Curiosidades</a>
-        </div>
-        <div class="div-menu-neta">
+        <div onclick="irParaDados()" class="div-menu-neta">
           <a>Dados</a>
         </div>
         <div class="div-menu-neta">
@@ -73,7 +70,7 @@
         <p>SOCIOECONÔMICO</p>
       </div>
 
-      <div class="textos">
+      <div id="dados" class="textos">
         <div class="bloco">
           <h3 id="titulo-texto">Taxa de Analfabetismo e Escolaridade</h3>
           <span id="texto">
@@ -104,11 +101,22 @@
             entrevistados. O segundo motivo mais citado foi não ter interesse em estudar (25,1%).
           </span>
         </div>
+        <br><br><br>
+        
 
       </div>
-
+            <br><br><br>
+      <div class="sobre-nos" id="sobre">
+      <h2>SOBRE NÓS</h2>
+      <div class="sobre-nos-text">
+        Nosso projeto nasceu da necessidade de compreender como as condições socioeconômicas influenciam diretamente a permanência dos estudantes nas escolas públicas.
+         Através da análise de dados oficiais e da criação de ferramentas visuais claras e acessíveis, buscamos revelar desigualdades, apoiar decisões de gestores e reforçar 
+         a importância de políticas públicas bem direcionadas.
+         Acreditamos que tornar essas informações mais transparentes é um passo essencial para reduzir a evasão escolar e promover uma educação mais justa para todos.
+      </div>
+    </div>
+        
     </section>
-
   </main>
 
   <footer>
@@ -124,5 +132,16 @@
     function limparSessao2() {
     sessionStorage.clear();
     window.location = "index.html";
+}
+
+function irParaDados() {
+  document.getElementById("dados").scrollIntoView({
+    behavior: "smooth"
+  });
+}
+function irParaSobre() {
+  document.getElementById("sobre").scrollIntoView({
+    behavior: "smooth"
+  });
 }
 </script>
