@@ -46,7 +46,8 @@ function pontosInsePorRegiao() {
             FROM Escola e
         ) AS t
         GROUP BY nivel_inse
-        ORDER BY nivel_inse;
+        ORDER BY nivel_inse
+        LIMIT 5;
         `;
         console.log("Executando instrução SQL: " + instrucao);
         return database.executar(instrucao);
