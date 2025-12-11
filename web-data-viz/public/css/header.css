@@ -82,6 +82,7 @@ header .div-hamburger-pai .div-hamburger-filha {
 
 .div-menu-pai-ativo {
   width: 300px;
+  opacity: 87%;
   border-left: 4px solid rgba(0,0,0,0.3);
 }
 
