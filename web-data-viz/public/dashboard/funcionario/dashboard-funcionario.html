@@ -58,124 +58,391 @@
 
         </div>
 
-        <div class="dash">
+        <main class="dash">
+    <section class="parte-cima-dash">
+      <div class="nome-pagina-dash">Taxa de Evasão Escolar - INSE e Regiões Brasileiras</div>
+    </section>
 
-            <div class="parte-cima">
-                <div class="nome-pagina"><span>Regiões e Evasão Escolar</span></div>
-                <div class="regiao">
-                    <label for="selectRegiao">Região:</label>
-                    <select id="selectRegiao">
-                        <option value="">Todas</option>
-                        <option value="norte">Norte</option>
-                        <option value="nordeste">Nordeste</option>
-                        <option value="centro-oeste">Centro-Oeste</option>
-                        <option value="sudeste">Sudeste</option>
-                        <option value="sul">Sul</option>
-                    </select>
-                </div>
+    <div class="main-dash">
 
+      <div class="container-kpi">
+        <section class="lado-esquerdo">
+          <section class="kpis">
+            <div class="kpis-destaque">
+              <article class="kpi-destaque orange">
+                <h3>Total de escolas críticas</h3>
+                <p class="valor-kpi" id="kpi_total_escolas_criticas">-</p>
+              </article>
+
+              <article class="kpi-destaque">
+                <h3>Alunos em escolas críticas</h3>
+                <p class="valor-kpi" id="kpi_total_alunos_criticos">-</p>
+              </article>
             </div>
 
-            <div class="kpis">
-                <div class=" kpi kpi1">
-                    <h3>Região mais afetada</h3>
-                    <p class="valor-kpi">Nordeste</p>
-                    <span class="descricao-kpi">Taxa de evasão média: 7,8%</span>
-                </div>
+            <div class="escola-critica">
+              <h3>Escolas críticas por região</h3>
 
-                <div class=" kpi kpi2">
-                    <h3>Ano escolar mais afetado</h3>
-                    <p class="valor-kpi">3º Ano do Ensino Médio</p>
-                    <span class="descricao-kpi">Taxa de evasão: 8,5%</span>
-                </div>
+              <div id="lista_escolas_criticas" class="tabela-escolas-criticas">
+              </div>
             </div>
 
-            <div class="graficos">
-                <div id="chart" class="graficoApex"></div>
+            <div class="grafico-card1">
+              <div id="chart1"></div>
             </div>
 
-        </div>
+          </section>
+        </section>
+        <section class="lado-direito">
+          <section class="graficos">
+            <div class="grafico-card2">
+              <div id="chart3"></div>
+            </div>
+            <div class="teste">
+              <div class="grafico-pizza">
+                <div class="grafico-card3">
+                  <div id="chart2"></div>
+                </div>
+              </div>
+              <div class="explicacao-pizza">
+                <h3>Legenda Níveis INSE</h3>
+                <div class="legenda">
+                  <div class="valor-inse">
+                    <h3>Valor INSE</h3>
+                    menor que 30<br>
+                    30 a 40<br>
+                    40 a 45<br>
+                    45 a 50<br>
+                    50 a 55<br>
+                    55 a 60<br>
+                    60 a 70<br>
+                    maior que 70<br>
+                  </div>
+                  <div class="nivel-inse">
+                    <h3>Nível INSE</h3>
+                    1<br>
+                    2<br>
+                    3<br>
+                    4<br>
+                    5<br>
+                    6<br>
+                    7<br>
+                    8<br>
+                  </div>
+                </div>
 
-    <script>
+              </div>
+            </div>
+          </section>
+        </section>
 
+      </div>
+
+      <script>
+        // mostra o nome do usuário logado
         b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
-        var options = {
-            series: [
-                {
-                    name: 'Escola Pública',
-                    type: 'column',
-                    data:  [12, 15, 18, 22, 28, 33, 38, 42, 48, 52, 55, 60, 62, 65, 68]
-                }
-            ],
-            chart: {
-                height: 350,
-                type: 'line',
-                stacked: false
-            },
-            plotOptions: {
-                bar: {
-                    colors: {
-                        ranges: [{
-                            from: 0,
-                            to: 100,
-                            color: '#050835' 
-                        }]
-                    },
-                    columnWidth: '50%'
-                }
-            },
-            dataLabels: {
-                enabled: false
-            },
-            stroke: {
-                width: [3]
-            },
-            title: {
-                text: 'Evasão Anual das Escolas Públicas',
-                align: 'left',
-                offsetX: 110
-            },
-            xaxis: {
-                categories: [
-                    2009, 2010, 2011, 2012, 2013, 2014, 2015,
-                    2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023
-                ]
-            },
-            yaxis: {
-                min: 0,
-                max: 100,
-                axisTicks: { show: true },
-                axisBorder: { show: true, color: '#000000' },
-                labels: {
-                    style: { colors: '#000000' },
-                    formatter: function (val) {
-                        return val + "%";
-                    }
+        document.addEventListener("DOMContentLoaded", function () {
+          carregarKpis();
+          carregarGraficoPizza();
+          carregarGraficoPiramide();
+          carregarGraficoBarra();
+          carregarListaEscolasCriticas();
+        });
+
+        // ===================== KPIs =====================
+
+        function carregarKpis() {
+          // KPI 1 – total de escolas críticas
+          fetch("/dashboard/total-escolas-criticas")
+            .then(function (resposta) {
+              return resposta.status === 200 ? resposta.json() : null;
+            })
+            .then(function (dado) {
+              if (!dado) return;
+              var elementoKpiEscolas = document.getElementById("kpi_total_escolas_criticas");
+              if (elementoKpiEscolas) {
+                elementoKpiEscolas.innerText = dado.total_escolas_criticas;
+              }
+            })
+            .catch(function (erro) {
+              console.error("Erro KPI total escolas críticas:", erro);
+            });
+
+          // KPI 2 – total de alunos em escolas críticas
+          fetch("/dashboard/total-alunos-criticos")
+            .then(function (resposta) {
+              return resposta.status === 200 ? resposta.json() : null;
+            })
+            .then(function (dado) {
+              if (!dado) return;
+              var elementoKpiAlunos = document.getElementById("kpi_total_alunos_criticos");
+              if (elementoKpiAlunos) {
+                elementoKpiAlunos.innerText = dado.total_alunos_criticos;
+              }
+            })
+            .catch(function (erro) {
+              console.error("Erro KPI total alunos críticos:", erro);
+            });
+        }
+
+        // ===================== GRÁFICO DE PIZZA =====================
+
+        function carregarGraficoPizza() {
+          fetch("/dashboard/alunos-nivel-inse")
+            .then(function (resposta) {
+              if (resposta.status === 204) {
+                console.warn("Nenhum dado para alunos por nível INSE");
+                return null;
+              }
+              return resposta.json();
+            })
+            .then(function (dados) {
+              if (!dados) return;
+
+              var seriesAlunos = dados.map(function (registro) {
+                return Number(registro.total_alunos);
+              });
+
+              var labelsInse = dados.map(function (registro) {
+                return "Grupo " + registro.nivel_inse;
+              });
+
+              var opcoesPizza = {
+                series: seriesAlunos,
+                chart: {
+                  type: "pie",
+                  height: 280
                 },
                 title: {
-                    text: "Taxa de Evasão (%) - Escola Pública",
-                    style: { color: '#000000' }
+                  text: "Alunos por Nível INSE",
+                  align: "middle"
                 },
-                tooltip: { enabled: true }
-            },
-            tooltip: {
-                fixed: {
-                    enabled: true,
-                    position: 'topLeft',
-                    offsetY: 30,
-                    offsetX: 60
+                labels: labelsInse,
+                colors: [
+                  "#E5A72A",
+                  "#F2C94C",
+                  "#F2994A",
+                  "#EB5757",
+                  "#6FCF97",
+                  "#56CCF2",
+                  "#9B51E0",
+                  "#2D9CDB"
+                ],
+                legend: {
+                  position: "bottom",
+                  fontSize: "16px"
+                },
+                dataLabels: {
+                  enabled: true,
+                  formatter: function (valor) {
+                    return valor.toFixed(1) + "%";
+                  }
                 }
-            },
-            legend: {
-                show: true
-            }
-        };
+              };
 
-        // Renderizar gráfico
-        var chart = new ApexCharts(document.querySelector("#chart"), options);
-        chart.render();
-    </script>
+              var graficoPizza = new ApexCharts(
+                document.querySelector("#chart2"),
+                opcoesPizza
+              );
+              graficoPizza.render();
+            })
+            .catch(function (erro) {
+              console.error("Erro ao carregar gráfico de pizza:", erro);
+            });
+        }
+
+        // ===================== GRÁFICO PIRÂMIDE =====================
+
+        function carregarGraficoPiramide() {
+          fetch("/dashboard/pontos-inse-regiao")
+            .then(function (resposta) {
+              if (resposta.status === 204) {
+                console.warn("Nenhum dado para pontos INSE por região");
+                return null;
+              }
+              return resposta.json();
+            })
+            .then(function (dados) {
+              if (!dados) return;
+
+              var categoriasRegiao = dados.map(function (registro) {
+                return registro.regiao;
+              });
+
+              var valoresInse = dados.map(function (registro) {
+                return Number(registro.valor_inse);
+              });
+
+              var opcoesPiramide = {
+                series: [
+                  {
+                    name: "Soma INSE",
+                    data: valoresInse
+                  }
+                ],
+                chart: {
+                  type: "bar",
+                  height: 350,
+                  dropShadow: {
+                    enabled: true
+                  }
+                },
+                plotOptions: {
+                  bar: {
+                    borderRadius: 0,
+                    horizontal: true,
+                    distributed: true,
+                    barHeight: "100%",
+                    isFunnel: true
+                  }
+                },
+                dataLabels: {
+                  enabled: true,
+                  formatter: function (valor, contexto) {
+                    return categoriasRegiao[contexto.dataPointIndex];
+                  },
+                  dropShadow: {
+                    enabled: true
+                  }
+                },
+                title: {
+                  text: "Pontos INSE por Região",
+                  align: "middle"
+                },
+                xaxis: {
+                  categories: categoriasRegiao
+                },
+                legend: {
+                  show: false
+                }
+              };
+
+              var graficoPiramide = new ApexCharts(
+                document.querySelector("#chart3"),
+                opcoesPiramide
+              );
+              graficoPiramide.render();
+            })
+            .catch(function (erro) {
+              console.error("Erro ao carregar gráfico pirâmide:", erro);
+            });
+        }
+
+        // ===================== GRÁFICO BARRAS (REDE) =====================
+
+        function carregarGraficoBarra() {
+          fetch("/dashboard/media-inse-rede")
+            .then(function (resposta) {
+              if (resposta.status === 204) {
+                console.warn("Nenhum dado para média INSE por rede");
+                return null;
+              }
+              return resposta.json();
+            })
+            .then(function (dados) {
+              if (!dados) return;
+
+              var categoriasRede = dados.map(function (registro) {
+                return registro.rede;
+              });
+
+              var valoresMediaInse = dados.map(function (registro) {
+                return Number(registro.media_inse);
+              });
+
+              var opcoesBarra = {
+                series: [
+                  {
+                    data: valoresMediaInse
+                  }
+                ],
+                chart: {
+                  type: "bar",
+                  height: 260
+                },
+                plotOptions: {
+                  bar: {
+                    borderRadius: 4,
+                    borderRadiusApplication: "end",
+                    horizontal: true
+                  }
+                },
+                dataLabels: {
+                  enabled: false
+                },
+                xaxis: {
+                  categories: categoriasRede
+                },
+                title: {
+                  text: "Média INSE por Rede",
+                  align: "left"
+                }
+              };
+
+              var graficoBarra = new ApexCharts(
+                document.querySelector("#chart1"),
+                opcoesBarra
+              );
+              graficoBarra.render();
+            })
+            .catch(function (erro) {
+              console.error("Erro ao carregar gráfico de barras:", erro);
+            });
+        }
+
+        // ===================== TABELA ESCOLAS CRÍTICAS =====================
+
+        function carregarListaEscolasCriticas() {
+          var containerTabela = document.getElementById("lista_escolas_criticas");
+          if (!containerTabela) return;
+
+          fetch("/dashboard/escolas-criticas-regiao")
+            .then(function (resposta) {
+              if (resposta.status === 204) {
+                containerTabela.innerHTML = "<p>Nenhum dado encontrado.</p>";
+                return null;
+              }
+              return resposta.json();
+            })
+            .then(function (dados) {
+              if (!dados) return;
+
+              var linhasTabela = dados
+                .map(function (registro) {
+                  return `
+              <tr>
+                <td>${registro.regiao}</td>
+                <td>${registro.inse_2014}</td>
+                <td>${registro.inse_2015}</td>
+                <td>${registro.qtd_escolas_criticas}</td>
+              </tr>
+            `;
+                })
+                .join("");
+
+              containerTabela.innerHTML = `
+          <table>
+            <thead>
+              <tr>
+                <th>Região</th>
+                <th>INSE 2014</th>
+                <th>INSE 2015</th>
+                <th>Escolas críticas</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${linhasTabela}
+            </tbody>
+          </table>
+        `;
+            })
+            .catch(function (erro) {
+              console.error("Erro ao carregar escolas críticas por região:", erro);
+              containerTabela.innerHTML = "<p>Erro ao carregar dados.</p>";
+            });
+        }
+      </script>
 
 </body>
 
